@@ -35,8 +35,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textPassword" max="32767" attributes="0"/>
-                          <Component id="textLogin" max="32767" attributes="0"/>
+                          <Component id="jtf_Password" max="32767" attributes="0"/>
+                          <Component id="jtf_Login" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -45,9 +45,9 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="botaoCancelar" min="-2" pref="110" max="-2" attributes="0"/>
-                  <Component id="botaoCadastrar" min="-2" pref="110" max="-2" attributes="0"/>
-                  <Component id="botaoConfirmar" min="-2" pref="110" max="-2" attributes="0"/>
+                  <Component id="btn_Cancelar" min="-2" pref="110" max="-2" attributes="0"/>
+                  <Component id="btn_Cadastrar" min="-2" pref="110" max="-2" attributes="0"/>
+                  <Component id="btn_Confirmar" min="-2" pref="110" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
           </Group>
@@ -61,19 +61,19 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtf_Login" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtf_Password" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="botaoConfirmar" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_Confirmar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="botaoCadastrar" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_Cadastrar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="botaoCancelar" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_Cancelar" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -97,11 +97,11 @@
         <Property name="text" type="java.lang.String" value="Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textLogin">
+    <Component class="javax.swing.JTextField" name="jtf_Login">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="textPassword">
+    <Component class="javax.swing.JPasswordField" name="jtf_Password">
     </Component>
-    <Component class="javax.swing.JButton" name="botaoConfirmar">
+    <Component class="javax.swing.JButton" name="btn_Confirmar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Confirmar"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -112,15 +112,15 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="botaoCadastrar">
+    <Component class="javax.swing.JButton" name="btn_Cadastrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCadastrarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CadastrarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botaoCancelar">
+    <Component class="javax.swing.JButton" name="btn_Cancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -131,7 +131,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCancelarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CancelarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

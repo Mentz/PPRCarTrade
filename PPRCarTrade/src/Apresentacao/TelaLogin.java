@@ -30,11 +30,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        textLogin = new javax.swing.JTextField();
-        textPassword = new javax.swing.JPasswordField();
-        botaoConfirmar = new javax.swing.JButton();
-        botaoCadastrar = new javax.swing.JButton();
-        botaoCancelar = new javax.swing.JButton();
+        jtf_Login = new javax.swing.JTextField();
+        jtf_Password = new javax.swing.JPasswordField();
+        btn_Confirmar = new javax.swing.JButton();
+        btn_Cadastrar = new javax.swing.JButton();
+        btn_Cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,23 +44,23 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel3.setText("Senha:");
 
-        botaoConfirmar.setText("Confirmar");
-        botaoConfirmar.setMaximumSize(new java.awt.Dimension(81, 23));
-        botaoConfirmar.setMinimumSize(new java.awt.Dimension(81, 23));
+        btn_Confirmar.setText("Confirmar");
+        btn_Confirmar.setMaximumSize(new java.awt.Dimension(81, 23));
+        btn_Confirmar.setMinimumSize(new java.awt.Dimension(81, 23));
 
-        botaoCadastrar.setText("Cadastrar");
-        botaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        btn_Cadastrar.setText("Cadastrar");
+        btn_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCadastrarActionPerformed(evt);
+                btn_CadastrarActionPerformed(evt);
             }
         });
 
-        botaoCancelar.setText("Cancelar");
-        botaoCancelar.setMaximumSize(new java.awt.Dimension(81, 23));
-        botaoCancelar.setMinimumSize(new java.awt.Dimension(81, 23));
-        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btn_Cancelar.setText("Cancelar");
+        btn_Cancelar.setMaximumSize(new java.awt.Dimension(81, 23));
+        btn_Cancelar.setMinimumSize(new java.awt.Dimension(81, 23));
+        btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCancelarActionPerformed(evt);
+                btn_CancelarActionPerformed(evt);
             }
         });
 
@@ -79,15 +79,15 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textPassword)
-                            .addComponent(textLogin))))
+                            .addComponent(jtf_Password)
+                            .addComponent(jtf_Login))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64))
         );
         layout.setVerticalGroup(
@@ -98,42 +98,42 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(textLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(textPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoCadastrar)
+                .addComponent(btn_Cadastrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_botaoCancelarActionPerformed
+    }//GEN-LAST:event_btn_CancelarActionPerformed
 
-    private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
+    private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
         // TODO add your handling code here:
         new TelaCadastro(this).setVisible(true);        
-    }//GEN-LAST:event_botaoCadastrarActionPerformed
+    }//GEN-LAST:event_btn_CadastrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoCadastrar;
-    private javax.swing.JButton botaoCancelar;
-    private javax.swing.JButton botaoConfirmar;
+    private javax.swing.JButton btn_Cadastrar;
+    private javax.swing.JButton btn_Cancelar;
+    private javax.swing.JButton btn_Confirmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField textLogin;
-    private javax.swing.JPasswordField textPassword;
+    private javax.swing.JTextField jtf_Login;
+    private javax.swing.JPasswordField jtf_Password;
     // End of variables declaration//GEN-END:variables
 }
