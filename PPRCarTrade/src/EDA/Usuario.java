@@ -39,8 +39,8 @@ public class Usuario {
     /*-------------------------------------*/
     
     public void cadastra_usuario(){
-        int carteira_motorista, fone;
-        String nome, e_mail, endereco, cpf;
+        int carteira_motorista;
+        String nome, e_mail, endereco, cpf, fone;
         Comentario coment_usu = new Comentario();
         
         Scanner input = new Scanner(System.in);
@@ -63,7 +63,7 @@ public class Usuario {
         coment_usu.criar_comentario();
         
         System.out.printf("Digite seu telefone: ");
-        fone = input.nextInt();
+        fone = input.nextLine();
         
         UsuDados data = new UsuDados(nome, cpf, carteira_motorista, e_mail, endereco, coment_usu, fone);
         

@@ -6,7 +6,7 @@ package EDA;
  */
 public class Negocios {
     private Compra compra;
-    private Garagem garagem;
+    private VendaVeiculo veiculo;
     private Venda venda;
     
     /*-----------------------------------*/
@@ -17,11 +17,11 @@ public class Negocios {
         this.compra = compra;
     }
     
-    public Garagem getGaragem(){
-        return garagem;
+    public VendaVeiculo getGaragem(){
+        return veiculo;
     }
-    public void setGaragem(Garagem garagem){
-        this.garagem = garagem;
+    public void setGaragem(VendaVeiculo veiculo){
+        this.veiculo = veiculo;
     }
     
     public Venda getVenda(){

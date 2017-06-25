@@ -11,11 +11,11 @@ public class UsuDados {
     private String e_mail;
     private String endereco;
     private Comentario coment_usu;
-    private int fone;
+    private String fone;
     
     
     /*-----------------------------------*/
-    public UsuDados(String nome, String cpf, int carteira_motorista, String e_mail, String endereco, Comentario coment_usu, int fone){
+    public UsuDados(String nome, String cpf, int carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone){
         this.nome = nome;
         this.cpf = cpf;
         this.carteira_motorista = carteira_motorista;
@@ -60,10 +60,10 @@ public class UsuDados {
         this.endereco = endereco;
     }
     
-    public int getFone(){        
+    public String getFone(){        
         return fone;
     }
-    public void setFone(int fone){
+    public void setFone(String fone){
         this.fone = fone;
     }
     

@@ -14,6 +14,16 @@ public class Veiculo{
     
     
     /*-----------------------------------*/
+    
+    public Veiculo(int ano, String modelo, String placa, String marca, String cor, Comentario c){
+        this.ano = ano;
+        this.modelo = modelo;
+        this.placa = placa;
+        this.marca = marca;
+        this.cor = cor;
+        this.coment_veiculo = c;
+    }
+    
     public int getAno(){
         return ano;
     }

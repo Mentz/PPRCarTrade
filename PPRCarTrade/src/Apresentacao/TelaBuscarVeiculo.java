@@ -5,8 +5,15 @@
  */
 package Apresentacao;
 
+import Apresentacao.Comparadores.NomeComparator;
 import DAO.DAOFacade;
+import EDA.VendaVeiculo;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -23,14 +30,18 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
     public TelaBuscarVeiculo() {
         initComponents();
         
+        jrb_Modelo.setSelected(true);
+        jrb_Modelo.setActionCommand("Ano");
+        
+        jlt_Veiculos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
         ButtonGroup group = new ButtonGroup();
         group.add(jrb_Ano);
         group.add(jrb_Marca);
         group.add(jrb_Modelo);
         group.add(jrb_MenorPreco);
-        group.add(jrb_MaiorPreco);
-        group.add(jrb_Nome);
-        
+        group.add(jrb_MaiorPreco);       
+                
         controlador = DAOFacade.getInstance();
         
     }
@@ -49,7 +60,6 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jrb_Nome = new javax.swing.JRadioButton();
         jrb_Ano = new javax.swing.JRadioButton();
         jrb_Modelo = new javax.swing.JRadioButton();
         jrb_Marca = new javax.swing.JRadioButton();
@@ -57,6 +67,8 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jrb_MaiorPreco = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jlt_Veiculos = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -65,11 +77,14 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
             }
         });
 
-        jrb_Nome.setText("Nome");
-
         jrb_Ano.setText("Ano");
 
         jrb_Modelo.setText("Modelo");
+        jrb_Modelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_ModeloActionPerformed(evt);
+            }
+        });
 
         jrb_Marca.setText("Marca");
 
@@ -83,15 +98,18 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
 
         jrb_MaiorPreco.setText("Maior preço");
 
+        jScrollPane1.setViewportView(jlt_Veiculos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2))
@@ -99,12 +117,13 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jrb_Ano)
-                            .addComponent(jrb_Nome)
                             .addComponent(jrb_Modelo)
                             .addComponent(jrb_Marca)
                             .addComponent(jrb_MenorPreco)
                             .addComponent(jrb_MaiorPreco))))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,20 +131,21 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(7, 7, 7)
-                .addComponent(jrb_Nome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrb_Ano)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrb_Modelo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrb_Marca)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrb_MenorPreco)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrb_MaiorPreco)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jrb_Ano)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrb_Modelo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrb_Marca)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrb_MenorPreco)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrb_MaiorPreco))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,6 +156,24 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         tela.setEnabled(true);
     }//GEN-LAST:event_Fechando
 
+    private void jrb_ModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_ModeloActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel list = new DefaultListModel();
+        
+        ArrayList<VendaVeiculo> aux = controlador.getVeiculos();
+        Collections.sort(aux, new NomeComparator());
+        
+        for(VendaVeiculo a : aux){
+            String res = String.format("%-10s %-10s %s %-10s %s %-10s", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), "Cor:", a.getVeiculo().getCor(), "Ano: ", a.getVeiculo().getAno());
+            list.addElement(res);
+        }
+        
+        jlt_Veiculos.setModel(list);
+        
+    }//GEN-LAST:event_jrb_ModeloActionPerformed
+    
+    
+    
     /**
      * @param args the command line arguments
      */    
@@ -143,11 +181,12 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> jlt_Veiculos;
     private javax.swing.JRadioButton jrb_Ano;
     private javax.swing.JRadioButton jrb_MaiorPreco;
     private javax.swing.JRadioButton jrb_Marca;
     private javax.swing.JRadioButton jrb_MenorPreco;
     private javax.swing.JRadioButton jrb_Modelo;
-    private javax.swing.JRadioButton jrb_Nome;
     // End of variables declaration//GEN-END:variables
 }

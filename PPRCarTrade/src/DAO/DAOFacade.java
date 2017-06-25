@@ -6,6 +6,8 @@
 package DAO;
 
 import EDA.Status;
+import EDA.VendaVeiculo;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,9 +17,11 @@ public class DAOFacade {
     
     private static DAOFacade instance;
     private Status status;
+    private DAOMemoria registros;
     
     private DAOFacade(){
         status = new Status();
+        registros = DAOMemoria.getInstance();
     }
     
     public static synchronized DAOFacade getInstance(){
@@ -75,6 +79,10 @@ public class DAOFacade {
     
     public Status getStatus(){
         return status;
+    }
+    
+    public ArrayList<VendaVeiculo> getVeiculos(){
+        return registros.getVeiculos();
     }
     
 }

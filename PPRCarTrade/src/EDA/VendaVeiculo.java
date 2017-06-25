@@ -11,6 +11,14 @@ public class VendaVeiculo {
     private Comentario adicionais;
     
     /*-----------------------------------*/
+    
+    public VendaVeiculo(Veiculo veiculo, UsuDados proprietario, double preco, Comentario c){
+        this.veiculo = veiculo;
+        this.proprietario = proprietario;
+        this.preco = preco;
+        this.adicionais = c;
+    }
+    
     public Veiculo getVeiculo(){
         return veiculo;
     }
