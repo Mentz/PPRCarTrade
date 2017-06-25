@@ -134,14 +134,10 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
-        if (jtf_Login.getText().isEmpty() || jtf_Password.getPassword().toString().isEmpty())
-=======
         String login = jtf_Login.getText();
         String senha = new String(jpf_Password.getPassword());   
         System.out.println(senha);
         if (!controlador.checaLogin(login, senha))
->>>>>>> 348167d4494656d7e72cf6fd7167e31600511ce3
         {
             JOptionPane.showMessageDialog(this, controlador.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
         } else
