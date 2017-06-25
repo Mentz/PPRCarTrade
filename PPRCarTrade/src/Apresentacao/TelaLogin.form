@@ -35,7 +35,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtf_Password" max="32767" attributes="0"/>
+                          <Component id="jpf_Password" max="32767" attributes="0"/>
                           <Component id="jtf_Login" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -66,7 +66,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtf_Password" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jpf_Password" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btn_Confirmar" min="-2" max="-2" attributes="0"/>
@@ -99,7 +99,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtf_Login">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jtf_Password">
+    <Component class="javax.swing.JPasswordField" name="jpf_Password">
     </Component>
     <Component class="javax.swing.JButton" name="btn_Confirmar">
       <Properties>
@@ -111,6 +111,9 @@
           <Dimension value="[81, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ConfirmarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Cadastrar">
       <Properties>
