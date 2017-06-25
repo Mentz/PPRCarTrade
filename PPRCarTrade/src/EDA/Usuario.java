@@ -39,8 +39,8 @@ public class Usuario {
     /*-------------------------------------*/
     
     public void cadastra_usuario(){
-        int cpf, carteira_motorista, fone;
-        String nome, e_mail, endereco;
+        int carteira_motorista, fone;
+        String nome, e_mail, endereco, cpf;
         Comentario coment_usu = new Comentario();
         
         Scanner input = new Scanner(System.in);
@@ -49,7 +49,7 @@ public class Usuario {
         nome = input.nextLine();
         
         System.out.printf("Digite seu cpf: ");
-        cpf = input.nextInt();
+        cpf = input.nextLine();
         
         System.out.printf("Digite o numero da sua carteira de motorista: ");
         carteira_motorista = input.nextInt();

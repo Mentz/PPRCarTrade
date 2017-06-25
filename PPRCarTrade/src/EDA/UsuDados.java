@@ -6,7 +6,7 @@ package EDA;
 
 public class UsuDados {
     private String nome;
-    private int cpf;
+    private String cpf;
     private int carteira_motorista;
     private String e_mail;
     private String endereco;
@@ -15,7 +15,7 @@ public class UsuDados {
     
     
     /*-----------------------------------*/
-    public UsuDados(String nome, int cpf, int carteira_motorista, String e_mail, String endereco, Comentario coment_usu, int fone){
+    public UsuDados(String nome, String cpf, int carteira_motorista, String e_mail, String endereco, Comentario coment_usu, int fone){
         this.nome = nome;
         this.cpf = cpf;
         this.carteira_motorista = carteira_motorista;
@@ -32,10 +32,10 @@ public class UsuDados {
         this.nome = nome;
     }
     
-    public int getCpf(){
+    public String getCpf(){
         return cpf;
     }
-    public void setCpf(int cpf){
+    public void setCpf(String cpf){
         this.cpf = cpf;
     }
     
