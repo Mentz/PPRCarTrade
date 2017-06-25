@@ -5,6 +5,7 @@
  */
 package Apresentacao;
 
+import DAO.DAOFacade;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +17,12 @@ public class TelaLogin extends javax.swing.JFrame {
     /**
      * Creates new form TelaLogin
      */
+    
+    DAOFacade controlador;
+    
     public TelaLogin() {
         initComponents();
+        controlador = DAOFacade.getInstance();
     }
 
     /**
@@ -33,7 +38,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jtf_Login = new javax.swing.JTextField();
-        jtf_Password = new javax.swing.JPasswordField();
+        jpf_Password = new javax.swing.JPasswordField();
         btn_Confirmar = new javax.swing.JButton();
         btn_Cadastrar = new javax.swing.JButton();
         btn_Cancelar = new javax.swing.JButton();
@@ -49,6 +54,11 @@ public class TelaLogin extends javax.swing.JFrame {
         btn_Confirmar.setText("Confirmar");
         btn_Confirmar.setMaximumSize(new java.awt.Dimension(81, 23));
         btn_Confirmar.setMinimumSize(new java.awt.Dimension(81, 23));
+        btn_Confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ConfirmarActionPerformed(evt);
+            }
+        });
 
         btn_Cadastrar.setText("Cadastrar");
         btn_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +91,7 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtf_Password)
+                            .addComponent(jpf_Password)
                             .addComponent(jtf_Login))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -104,7 +114,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jtf_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpf_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -124,14 +134,39 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         if (jtf_Login.getText().isEmpty() || jtf_Password.getPassword().toString().isEmpty())
+=======
+        String login = jtf_Login.getText();
+        String senha = new String(jpf_Password.getPassword());   
+        System.out.println(senha);
+        if (!controlador.checaLogin(login, senha))
+>>>>>>> 348167d4494656d7e72cf6fd7167e31600511ce3
         {
-            JOptionPane.showMessageDialog(this, "É necessário preencher o campo usuário e senha com seus dados desejados!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, controlador.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
         } else
         {
             new TelaCadastro(this).setVisible(true);
         }
+        limpaTela();
     }//GEN-LAST:event_btn_CadastrarActionPerformed
+    
+    public void limpaTela(){
+        jtf_Login.setText("");
+        jpf_Password.setText("");
+    }
+    
+    private void btn_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmarActionPerformed
+        // TODO add your handling code here:
+        String login = jtf_Login.getText();
+        String senha = new String(jpf_Password.getPassword());
+        if(controlador.checaLogin(login, senha)){
+            new TelaNegocio(this).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, controlador.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        limpaTela();
+    }//GEN-LAST:event_btn_ConfirmarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -141,7 +176,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField jpf_Password;
     private javax.swing.JTextField jtf_Login;
-    private javax.swing.JPasswordField jtf_Password;
     // End of variables declaration//GEN-END:variables
 }
