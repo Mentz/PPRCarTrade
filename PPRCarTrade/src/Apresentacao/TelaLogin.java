@@ -5,6 +5,8 @@
  */
 package Apresentacao;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author weiss
@@ -122,7 +124,13 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
         // TODO add your handling code here:
-        new TelaCadastro(this).setVisible(true);        
+        if (jtf_Login.getText().isEmpty() || jtf_Password.getPassword().toString().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "É necessário preencher o campo usuário e senha com seus dados desejados!", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else
+        {
+            new TelaCadastro(this).setVisible(true);
+        }
     }//GEN-LAST:event_btn_CadastrarActionPerformed
 
 
