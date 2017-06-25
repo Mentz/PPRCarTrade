@@ -5,6 +5,8 @@
  */
 package pprcartrade;
 
+import Telas.TelaLogin;
+
 /**
  *
  * @author Lucas
@@ -15,7 +17,9 @@ public class PPRCarTrade {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        new TelaLogin().setVisible(true);
+        
     }
     
 }
