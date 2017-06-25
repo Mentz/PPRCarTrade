@@ -47,9 +47,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="btn_Cadastrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
-                      <Component id="btn_Cancelar" min="-2" pref="92" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btn_Cancelar" min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jtf_Nome" max="32767" attributes="0"/>
                   <Component id="jtf_RG" max="32767" attributes="0"/>

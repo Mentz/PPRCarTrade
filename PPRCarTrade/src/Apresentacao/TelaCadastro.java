@@ -5,6 +5,7 @@
  */
 package Apresentacao;
 
+import DAO.DAOFacade;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,9 +19,11 @@ public class TelaCadastro extends javax.swing.JFrame {
      */
     
     TelaLogin telaLogin;
+    DAOFacade controlador;
     
     public TelaCadastro() {
         initComponents();
+        controlador = DAOFacade.getInstance();
     }
     
     public TelaCadastro(TelaLogin t){
@@ -108,9 +111,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(btn_Cadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE))
                     .addComponent(jtf_Nome)
                     .addComponent(jtf_RG)
                     .addComponent(jtf_CPF)
@@ -160,8 +163,17 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!", "Cadastrado", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
+        String nome = jtf_Nome.getText();
+        String rg = jtf_RG.getText();
+        String cpf = jtf_CPF.getText();
+        String telefone = jtf_Telefone.getText();
+        String email = jtf_Email.getText();
+        if(controlador.checaLogin(nome, rg, cpf, telefone, email)){
+            JOptionPane.showMessageDialog(this, "Cadastro efetuado com sucesso!", "Cadastrado!", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, controlador.getStatus().getErro(), "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn_CadastrarActionPerformed
 
     private void Fechando(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Fechando
@@ -169,40 +181,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         telaLogin.setEnabled(true);
     }//GEN-LAST:event_Fechando
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCadastro().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Cadastrar;
