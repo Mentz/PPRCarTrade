@@ -13,7 +13,12 @@ import java.util.ArrayList;
  * @redator Lucas
  */
 public interface DAOFacade {
-    public ArrayList<VendaVeiculo> getVeiculos();
+    public void registrarUsuario(Usuario usuario);
+    public void registrarVeiculo(Veiculo veiculo);
+    public Adm login(String login, String senha);
+    public ArrayList<VendaVeiculo> listaVeiculos();
+    public boolean alterarRegistro(Adm adm, Veiculo veiculo);
+    public boolean excluirRegistro(Adm adm, Veiculo veiculo);
     public boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email);
     public boolean checaLogin(String login, String senha);
     public Status getStatus();

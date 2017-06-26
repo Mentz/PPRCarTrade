@@ -5,9 +5,11 @@
  */
 package DAO;
 
+import EDA.Adm;
 import EDA.Comentario;
 import EDA.UsuDados;
 import EDA.Status;
+import EDA.Usuario;
 import EDA.Veiculo;
 import EDA.VendaVeiculo;
 import java.util.ArrayList;
@@ -19,7 +21,9 @@ import java.util.ArrayList;
 public class DAOMemoria implements DAOFacade {
     private Status status;
     private static DAOMemoria instance;
-    private ArrayList<VendaVeiculo> veiculos;    
+    private ArrayList<Veiculo> veiculos;
+    private ArrayList<VendaVeiculo> vendaVeiculos;
+    private ArrayList<Usuario> usuarios;
     
     private DAOMemoria(){
         this.status = new Status();
@@ -32,19 +36,51 @@ public class DAOMemoria implements DAOFacade {
         Veiculo b4 = new Veiculo(2010, "Exemplo4", "FWA1013", "Exemplao4", "Roxo", c);
         Veiculo b5 = new Veiculo(2010, "Exemplo5", "FWB1013", "Exemplao5", "Dourado", c);
         UsuDados p1 = new UsuDados("FF", "120", 5, "as", "as", c, "asas");
-        veiculos.add(new VendaVeiculo(b1, p1, 25555.33, c));
-        veiculos.add(new VendaVeiculo(b2, p1, 10000.33, c));
-        veiculos.add(new VendaVeiculo(b3, p1, 5626.33, c));
-        veiculos.add(new VendaVeiculo(b4, p1, 300000.33, c));
-        veiculos.add(new VendaVeiculo(b5, p1, 132000.33, c));
+        vendaVeiculos.add(new VendaVeiculo(b1, p1, 25555.33, c));
+        vendaVeiculos.add(new VendaVeiculo(b2, p1, 10000.33, c));
+        vendaVeiculos.add(new VendaVeiculo(b3, p1, 5626.33, c));
+        vendaVeiculos.add(new VendaVeiculo(b4, p1, 300000.33, c));
+        vendaVeiculos.add(new VendaVeiculo(b5, p1, 132000.33, c));
     }
+    
+    // Autor: Mentz
+    public void registrarUsuario(Usuario usuario)
+    {
+        usuarios.add(usuario);
+    }
+    
+    // Autor: Mentz
+    public void registrarVeiculo(Usuario usuario, Veiculo veiculo)
+    {
+        veiculos.add(veiculo);
+    }
+    
+    // Autor: Mentz
+    public Adm login(String login, String senha)
+    {
         
-    public ArrayList<VendaVeiculo> getVeiculos(){
-        return veiculos;
+    }
+    
+    // Autor: Mentz
+    public boolean alterarRegistro(Adm adm, Veiculo veiculo)
+    {
+        
+    }
+    
+    // Autor: Mentz
+    public boolean excluirRegistro(Adm adm, Veiculo veiculo)
+    {
+        
+    }
+    
+    // Autor: Mentz
+    public ArrayList<VendaVeiculo> listaVeiculos(){
+        return vendaVeiculos;
     }
 
     public Object Comentario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
+        //To change body of generated methods, choose Tools | Templates.
     }
     
     public static DAOMemoria getInstance(){
@@ -86,7 +122,7 @@ public class DAOMemoria implements DAOFacade {
         }
         return false;
     }
-    //ok
+     
     public boolean checaLogin(String login, String senha){
         if(login.length() == 0){
             status.addErro("Login incorreto!");

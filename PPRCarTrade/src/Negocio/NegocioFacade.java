@@ -19,9 +19,33 @@ public class NegocioFacade {
     static final DAOFacade registro = DAOMemoria.getInstance();
     
     // Autor: Mentz
-    public static ArrayList<VendaVeiculo> getVeiculos()
+    public static boolean registrarUsuario(Usuario user)
     {
-        return registro.getVeiculos();
+        return registro.registrarUsuario(user);
+    }
+    
+    // Autor: Mentz
+    public static void registrarVeiculo(Veiculo veiculo)
+    {
+        return registro.registrarVeiculo(veiculo);
+    }
+    
+    // Autor: Mentz
+    public static boolean registrarVendedor(Vendedor vendedor)
+    {
+        return registro.registrarVendedor(vendedor);
+    }
+    
+    // Autor: Mentz
+    public static Adm login(String login, String senha)
+    {
+        return registro.login(login, senha);
+    }
+    
+    // Autor: Mentz
+    public static ArrayList<VendaVeiculo> listaVeiculos()
+    {
+        return registro.listaVeiculos();
     }
     
     // Autor: Mentz

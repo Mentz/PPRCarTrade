@@ -156,7 +156,7 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultListModel list = new DefaultListModel();
         
-        ArrayList<VendaVeiculo> aux = NegocioFacade.getVeiculos();
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
         
         Collections.sort(aux, new NomeComparator());
         
