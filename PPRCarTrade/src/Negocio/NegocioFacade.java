@@ -21,7 +21,13 @@ public class NegocioFacade {
     // Autor: Mentz
     public static boolean registrarUsuario(Usuario user)
     {
-        return registro.registrarUsuario(user);
+        for (Usuario us : registro.listaUsuarios())
+        {
+            if (user.getDados().getCpf().compareTo(us.getDados().getCpf()) == 0)
+                return false;
+        }
+        registro.registrarUsuario(user);
+        return true;
     }
     
     // Autor: Mentz

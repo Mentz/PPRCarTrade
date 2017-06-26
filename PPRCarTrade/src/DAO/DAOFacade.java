@@ -17,6 +17,7 @@ public interface DAOFacade {
     public void registrarVeiculo(Veiculo veiculo);
     public Adm login(String login, String senha);
     public ArrayList<VendaVeiculo> listaVeiculos();
+    public ArrayList<Usuario> listaUsuarios();
     public boolean alterarRegistro(Adm adm, Veiculo veiculo);
     public boolean excluirRegistro(Adm adm, Veiculo veiculo);
     public boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email);

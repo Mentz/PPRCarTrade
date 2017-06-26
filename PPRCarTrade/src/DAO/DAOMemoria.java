@@ -62,13 +62,13 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
-    public boolean alterarRegistro(Adm adm, Veiculo veiculo)
+    public boolean alterarRegistro(Veiculo veiculo)
     {
         
     }
     
     // Autor: Mentz
-    public boolean excluirRegistro(Adm adm, Veiculo veiculo)
+    public boolean excluirRegistro(Veiculo veiculo)
     {
         
     }
@@ -76,6 +76,12 @@ public class DAOMemoria implements DAOFacade {
     // Autor: Mentz
     public ArrayList<VendaVeiculo> listaVeiculos(){
         return vendaVeiculos;
+    }
+    
+    // Autor: Mentz
+    public ArrayList<Usuario> listaUsuarios()
+    {
+        return usuarios;
     }
 
     public Object Comentario() {
