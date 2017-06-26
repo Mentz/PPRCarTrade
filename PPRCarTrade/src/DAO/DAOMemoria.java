@@ -44,6 +44,7 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
+    @Override
     public void registrarUsuario(Usuario usuario)
     {
         usuarios.add(usuario);
@@ -56,6 +57,7 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
+    @Override
     public Adm login(String login, String senha)
     {
         
@@ -74,11 +76,13 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
+    @Override
     public ArrayList<VendaVeiculo> listaVeiculos(){
         return vendaVeiculos;
     }
     
     // Autor: Mentz
+    @Override
     public ArrayList<Usuario> listaUsuarios()
     {
         return usuarios;
@@ -96,6 +100,7 @@ public class DAOMemoria implements DAOFacade {
         return instance;
     }
     
+    @Override
      public boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email){
         if(nome.length() <=6){
             status.addErro("Nome de usuário muito pequeno!");
@@ -123,12 +128,10 @@ public class DAOMemoria implements DAOFacade {
         if(!emailArroba){
             status.addErro("Email incorreto!");
         }
-        if(!status.fail()){
-            return true;
-        }
-        return false;
+        return !status.fail();
     }
      
+    @Override
     public boolean checaLogin(String login, String senha){
         if(login.length() == 0){
             status.addErro("Login incorreto!");
@@ -136,12 +139,10 @@ public class DAOMemoria implements DAOFacade {
         if(senha.length() == 0){
             status.addErro("Senha incorreta!");
         }
-        if(status.fail()){
-            return false;
-        }
-        return true;
+        return !status.fail();
     }
     
+    @Override
     public Status getStatus(){
         return status;
     }

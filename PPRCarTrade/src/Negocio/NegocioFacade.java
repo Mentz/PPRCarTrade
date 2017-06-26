@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class NegocioFacade {
     // Autor: Mentz
-    static final DAOFacade registro = DAOMemoria.getInstance();
+    //static final DAOFacade registro = DAOMemoria.getInstance();
     
     // Autor: Mentz
     public static boolean registrarUsuario(Usuario user)
@@ -31,16 +31,16 @@ public class NegocioFacade {
     }
     
     // Autor: Mentz
-    public static void registrarVeiculo(Veiculo veiculo)
+    /*public static void registrarVeiculo(Veiculo veiculo)
     {
         return registro.registrarVeiculo(veiculo);
-    }
+    }*/
     
     // Autor: Mentz
-    public static boolean registrarVendedor(Vendedor vendedor)
+   /*public static boolean registrarVendedor(Vendedor vendedor)
     {
         return registro.registrarVendedor(vendedor);
-    }
+    }*/
     
     // Autor: Mentz
     public static Adm login(String login, String senha)
