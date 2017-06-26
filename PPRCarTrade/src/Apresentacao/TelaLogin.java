@@ -5,8 +5,7 @@
  */
 package Apresentacao;
 
-import DAO.DAOFacade;
-import DAO.DAOMemoria;
+import Negocio.NegocioFacade;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,8 +17,6 @@ public class TelaLogin extends javax.swing.JFrame {
     /**
      * Creates new form TelaLogin
      */
-    
-    static final DAOFacade controlador = DAOMemoria.getInstance();
     
     public TelaLogin() {
         initComponents();
@@ -137,9 +134,9 @@ public class TelaLogin extends javax.swing.JFrame {
         String login = jtf_Login.getText();
         String senha = new String(jpf_Password.getPassword());   
         System.out.println(senha);
-        if (!controlador.checaLogin(login, senha))
+        if (!NegocioFacade.checaLogin(login, senha))
         {
-            JOptionPane.showMessageDialog(this, controlador.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
         } else
         {
             new TelaCadastro(this).setVisible(true);
@@ -156,10 +153,10 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String login = jtf_Login.getText();
         String senha = new String(jpf_Password.getPassword());
-        if(controlador.checaLogin(login, senha)){
+        if(NegocioFacade.checaLogin(login, senha)){
             new TelaNegocio(this).setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, controlador.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         limpaTela();
     }//GEN-LAST:event_btn_ConfirmarActionPerformed

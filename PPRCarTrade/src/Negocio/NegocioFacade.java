@@ -19,12 +19,14 @@ public class NegocioFacade {
     static final DAOFacade registro = DAOMemoria.getInstance();
     
     // Autor: Mentz
-    public static ArrayList<VendaVeiculo> getVeiculos(){
+    public static ArrayList<VendaVeiculo> getVeiculos()
+    {
         return registro.getVeiculos();
     }
     
     // Autor: Mentz
-    public static boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email){
+    public static boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email)
+    {
         return registro.checaCadastro(nome, rg, cpf, telefone, email);
     }
     
@@ -32,6 +34,12 @@ public class NegocioFacade {
     public static Status getStatus()
     {
         return registro.getStatus();
+    }
+    
+    // Autor: Mentz
+    public static boolean checaLogin(String login, String senha)
+    {
+        return registro.checaLogin(login, senha);
     }
     
 }
