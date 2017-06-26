@@ -5,11 +5,16 @@
  */
 package DAO;
 
+import EDA.*;
+import java.util.ArrayList;
 /**
  *
  * @author weiss
  * @redator Lucas
  */
-// mais uma colisao, tua parte aqui
 public interface DAOFacade {
+    public ArrayList<VendaVeiculo> getVeiculos();
+    public boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email);
+    public boolean checaLogin(String login, String senha);
+    public Status getStatus();
 }

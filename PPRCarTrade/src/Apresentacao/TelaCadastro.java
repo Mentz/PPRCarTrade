@@ -6,6 +6,7 @@
 package Apresentacao;
 
 import DAO.DAOFacade;
+import Negocio.NegocioFacade;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,11 +20,9 @@ public class TelaCadastro extends javax.swing.JFrame {
      */
     
     TelaLogin telaLogin;
-    DAOFacade controlador;
     
     public TelaCadastro() {
         initComponents();
-        controlador = DAOFacade.getInstance();
     }
     
     public TelaCadastro(TelaLogin t){
@@ -168,11 +167,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         String cpf = jtf_CPF.getText();
         String telefone = jtf_Telefone.getText();
         String email = jtf_Email.getText();
-        if(controlador.checaCadastro(nome, rg, cpf, telefone, email)){
+        if(NegocioFacade.checaCadastro(nome, rg, cpf, telefone, email)){
             JOptionPane.showMessageDialog(this, "Cadastro efetuado com sucesso!", "Cadastrado!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, controlador.getStatus().getErro(), "Erro!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_CadastrarActionPerformed
 

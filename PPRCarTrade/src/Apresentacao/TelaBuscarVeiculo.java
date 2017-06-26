@@ -6,7 +6,7 @@
 package Apresentacao;
 
 import Apresentacao.Comparadores.NomeComparator;
-import DAO.DAOFacade;
+import Negocio.NegocioFacade;
 import EDA.VendaVeiculo;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +25,6 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
      * Creates new form TelaBuscarVeiculo
      */
     TelaNegocio tela;
-    DAOFacade controlador;
     
     public TelaBuscarVeiculo() {
         initComponents();
@@ -40,10 +39,7 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         group.add(jrb_Marca);
         group.add(jrb_Modelo);
         group.add(jrb_MenorPreco);
-        group.add(jrb_MaiorPreco);       
-                
-        controlador = DAOFacade.getInstance();
-        
+        group.add(jrb_MaiorPreco);
     }
     
     public TelaBuscarVeiculo(TelaNegocio tela){
@@ -160,7 +156,8 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultListModel list = new DefaultListModel();
         
-        ArrayList<VendaVeiculo> aux = controlador.getVeiculos();
+        ArrayList<VendaVeiculo> aux = NegocioFacade.getVeiculos();
+        
         Collections.sort(aux, new NomeComparator());
         
         for(VendaVeiculo a : aux){

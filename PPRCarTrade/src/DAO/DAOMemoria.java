@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author Lucas
  */
-public class DAOMemoria {
+public class DAOMemoria implements DAOFacade {
     private Status status;
     private static DAOMemoria instance;
     private ArrayList<VendaVeiculo> veiculos;    
@@ -43,11 +43,11 @@ public class DAOMemoria {
         return veiculos;
     }
 
-    private Object Comentario() {
+    public Object Comentario() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public static synchronized DAOMemoria getInstance(){
+    public static DAOMemoria getInstance(){
         if(instance == null){
             instance = new DAOMemoria();
         }

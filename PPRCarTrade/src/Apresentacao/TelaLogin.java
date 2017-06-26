@@ -6,6 +6,7 @@
 package Apresentacao;
 
 import DAO.DAOFacade;
+import DAO.DAOMemoria;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,11 +19,10 @@ public class TelaLogin extends javax.swing.JFrame {
      * Creates new form TelaLogin
      */
     
-    DAOFacade controlador;
+    static final DAOFacade controlador = DAOMemoria.getInstance();
     
     public TelaLogin() {
         initComponents();
-        controlador = DAOFacade.getInstance();
     }
 
     /**
