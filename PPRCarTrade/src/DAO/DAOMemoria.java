@@ -7,20 +7,22 @@ package DAO;
 
 import EDA.Comentario;
 import EDA.UsuDados;
+import EDA.Status;
 import EDA.Veiculo;
 import EDA.VendaVeiculo;
 import java.util.ArrayList;
 
 /**
  *
- * @author weiss
+ * @author Lucas
  */
 public class DAOMemoria {
-    
+    private Status status;
     private static DAOMemoria instance;
     private ArrayList<VendaVeiculo> veiculos;    
     
     private DAOMemoria(){
+        this.status = new Status();
         veiculos = new ArrayList<>();
         Comentario c = new Comentario();
         c.setComment("oi");
@@ -36,6 +38,14 @@ public class DAOMemoria {
         veiculos.add(new VendaVeiculo(b4, p1, 300000.33, c));
         veiculos.add(new VendaVeiculo(b5, p1, 132000.33, c));
     }
+        
+    public ArrayList<VendaVeiculo> getVeiculos(){
+        return veiculos;
+    }
+
+    private Object Comentario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public static synchronized DAOMemoria getInstance(){
         if(instance == null){
@@ -44,13 +54,53 @@ public class DAOMemoria {
         return instance;
     }
     
-    public ArrayList<VendaVeiculo> getVeiculos() {
-        return veiculos;
+     public boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email){
+        if(nome.length() <=6){
+            status.addErro("Nome de usuário muito pequeno!");
+        }
+        if(rg.length() != 7){
+            status.addErro("Numero de RG incorreto!");
+        }
+        if(cpf.length() != 11){
+            status.addErro("Numero de CPF incorreto!");
+        }
+        if(telefone.length() < 10 || telefone.length() > 11){
+            status.addErro("Numero de telefone incorreto!");
+        }
+        boolean emailArroba = false;
+        for(int i = 0; i < email.length(); i++){
+            if(email.charAt(i) == '@'){
+                if(emailArroba){
+                    status.addErro("Email incorreto!");
+                    break;
+                } else {
+                    emailArroba = true;
+                }
+            }
+        }
+        if(!emailArroba){
+            status.addErro("Email incorreto!");
+        }
+        if(!status.fail()){
+            return true;
+        }
+        return false;
     }
-
-    private Object Comentario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //ok
+    public boolean checaLogin(String login, String senha){
+        if(login.length() == 0){
+            status.addErro("Login incorreto!");
+        }
+        if(senha.length() == 0){
+            status.addErro("Senha incorreta!");
+        }
+        if(status.fail()){
+            return false;
+        }
+        return true;
     }
     
-    
+    public Status getStatus(){
+        return status;
+    }
 }
