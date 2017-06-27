@@ -74,6 +74,12 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel6.setText("E-mail:");
 
+        jtf_Nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_NomeActionPerformed(evt);
+            }
+        });
+
         btn_Cadastrar.setText("Cadastrar");
         btn_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +185,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         telaLogin.setEnabled(true);
     }//GEN-LAST:event_Fechando
+
+    private void jtf_NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_NomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_NomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

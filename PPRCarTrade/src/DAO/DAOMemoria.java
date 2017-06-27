@@ -70,11 +70,11 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
-    public boolean excluirRegistro(Veiculo veiculo)
+    /*public boolean excluirRegistro(Veiculo veiculo)
     {
         
     }
-    
+    */
     // Autor: Mentz
     @Override
     public ArrayList<VendaVeiculo> listaVeiculos(){
@@ -145,5 +145,20 @@ public class DAOMemoria implements DAOFacade {
     @Override
     public Status getStatus(){
         return status;
+    }
+
+    @Override
+    public void registrarVeiculo(Veiculo veiculo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean alterarRegistro(Adm adm, Veiculo veiculo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean excluirRegistro(Adm adm, Veiculo veiculo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

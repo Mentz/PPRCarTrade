@@ -19,6 +19,7 @@ public class NegocioFacade {
     //static final DAOFacade registro = DAOMemoria.getInstance();
     
     // Autor: Mentz
+    
     public static boolean registrarUsuario(Usuario user)
     {
         for (Usuario us : registro.listaUsuarios())
@@ -31,10 +32,10 @@ public class NegocioFacade {
     }
     
     // Autor: Mentz
-    /*public static void registrarVeiculo(Veiculo veiculo)
+   public static void registrarVeiculo(Veiculo veiculo)
     {
         return registro.registrarVeiculo(veiculo);
-    }*/
+    }
     
     // Autor: Mentz
    /*public static boolean registrarVendedor(Vendedor vendedor)
