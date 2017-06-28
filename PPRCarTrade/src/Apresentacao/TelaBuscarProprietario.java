@@ -153,6 +153,7 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
         
         ArrayList<UsuDados> aux = NegocioFacade.listaUsuarios();
         
+        //Ainda falta o comparador
         Collections.sort(aux, new NomeComparator());
         
         for(UsuDados a : aux){
