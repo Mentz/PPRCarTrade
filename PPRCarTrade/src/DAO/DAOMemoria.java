@@ -12,6 +12,7 @@ import EDA.Status;
 import EDA.Usuario;
 import EDA.Veiculo;
 import EDA.VendaVeiculo;
+import EDA.Vendedor;
 import java.util.ArrayList;
 
 /**
@@ -24,6 +25,7 @@ public class DAOMemoria implements DAOFacade {
     private ArrayList<Veiculo> veiculos;
     private ArrayList<VendaVeiculo> vendaVeiculos;
     private ArrayList<Usuario> usuarios;
+    private ArrayList<Vendedor> vendedores;
     
     private DAOMemoria(){
         this.status = new Status();
@@ -50,31 +52,51 @@ public class DAOMemoria implements DAOFacade {
         usuarios.add(usuario);
     }
     
-    // Autor: Mentz
+    
+    @Override
+    public void registrarVendedor(Vendedor vendedor){
+        vendedores.add(vendedor);
+    }
+            
     public void registrarVeiculo(Usuario usuario, Veiculo veiculo)
     {
         veiculos.add(veiculo);
     }
     
     // Autor: Mentz
+    //@Override
     @Override
     public Adm login(String login, String senha)
     {
-        
+        registro
     }
     
     // Autor: Mentz
-    public boolean alterarRegistro(Veiculo veiculo)
+    public boolean alterarRegistro(Veiculo veiculo1, Veiculo veiculo2)
     {
+        for(int i = 0; i < veiculos.size(); i++){
+            if(veiculos.get(i) == veiculo1){
+                veiculos.set(i, veiculo2);
+                return true;
+            }
+        }
         
+        return false;
     }
     
     // Autor: Mentz
-    /*public boolean excluirRegistro(Veiculo veiculo)
+    public boolean excluirRegistro(Veiculo veiculo)
     {
+        for(int i = 0; i < veiculos.size(); i++){
+            if(veiculos.get(i) == veiculo){
+                veiculos.remove(i);
+                return true;
+            }
+        }
         
+        return false;
     }
-    */
+
     // Autor: Mentz
     @Override
     public ArrayList<VendaVeiculo> listaVeiculos(){

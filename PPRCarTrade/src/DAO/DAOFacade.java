@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public interface DAOFacade {
     public void registrarUsuario(Usuario usuario);
+    public void registrarVendedor(Vendedor vendedor);
     public void registrarVeiculo(Veiculo veiculo);
     public Adm login(String login, String senha);
     public ArrayList<VendaVeiculo> listaVeiculos();

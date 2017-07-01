@@ -24,7 +24,7 @@ public class NegocioFacade {
     {
         for (Usuario us : registro.listaUsuarios())
         {
-            if (user.getDados().getCpf().compareTo(us.getDados().getCpf()) == 0)
+            if (user.getCpf().compareTo(us.getCpf()) == 0)
                 return false;
         }
         registro.registrarUsuario(user);
@@ -34,14 +34,14 @@ public class NegocioFacade {
     // Autor: Mentz
    public static void registrarVeiculo(Veiculo veiculo)
     {
-        return registro.registrarVeiculo(veiculo);
+        registro.registrarVeiculo(veiculo);
     }
     
     // Autor: Mentz
-   /*public static boolean registrarVendedor(Vendedor vendedor)
+   public static void registrarVendedor(Vendedor vendedor)
     {
-        return registro.registrarVendedor(vendedor);
-    }*/
+        registro.registrarVendedor(vendedor);
+    }
     
     // Autor: Mentz
     public static Adm login(String login, String senha)
