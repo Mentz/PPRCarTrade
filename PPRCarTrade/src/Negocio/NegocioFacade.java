@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class NegocioFacade {
     // Autor: Mentz
-    //static final DAOFacade registro = DAOMemoria.getInstance();
+    static final DAOFacade registro = DAOMemoria.getInstance();
     
     // Autor: Mentz
     

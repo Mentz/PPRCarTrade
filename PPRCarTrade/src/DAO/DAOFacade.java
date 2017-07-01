@@ -9,8 +9,7 @@ import EDA.*;
 import java.util.ArrayList;
 /**
  *
- * @author weiss
- * @redator Lucas
+ * @author Lucas Mentz
  */
 public interface DAOFacade {
     public void registrarUsuario(Usuario usuario);
