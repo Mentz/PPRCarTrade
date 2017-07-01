@@ -26,7 +26,7 @@ public class DAOMemoria implements DAOFacade {
     private ArrayList<VendaVeiculo> vendaVeiculos;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Vendedor> vendedores;
-    private Adm admin;
+    protected Adm admin;
     
     private DAOMemoria(){
         admin.setLogin("admin");
@@ -35,11 +35,11 @@ public class DAOMemoria implements DAOFacade {
         veiculos = new ArrayList<>();
         Comentario c = new Comentario();
         c.setComment("oi");
-        Veiculo b1 = new Veiculo(2010, "Exemplo1", "FWW1013", "Exemplao1", "Verde", c);    
-        Veiculo b2 = new Veiculo(2010, "Exemplo2", "FWY1013", "Exemplao2", "Azul", c);
-        Veiculo b3 = new Veiculo(2010, "Exemplo3", "FWZ1013", "Exemplao3", "Vermelho", c);
-        Veiculo b4 = new Veiculo(2010, "Exemplo4", "FWA1013", "Exemplao4", "Roxo", c);
-        Veiculo b5 = new Veiculo(2010, "Exemplo5", "FWB1013", "Exemplao5", "Dourado", c);
+        Veiculo b1 = new Veiculo(2010, "Exemplo1", "FWW1013", "Exemplo1", "Verde", c);    
+        Veiculo b2 = new Veiculo(2010, "Exemplo2", "FWY1013", "Exemplo2", "Azul", c);
+        Veiculo b3 = new Veiculo(2010, "Exemplo3", "FWZ1013", "Exemplo3", "Vermelho", c);
+        Veiculo b4 = new Veiculo(2010, "Exemplo4", "FWA1013", "Exemplo4", "Roxo", c);
+        Veiculo b5 = new Veiculo(2010, "Exemplo5", "FWB1013", "Exemplo5", "Dourado", c);
         UsuDados p1 = new UsuDados("FF", "120", 5, "as", "as", c, "asas");
         vendaVeiculos.add(new VendaVeiculo(b1, p1, 25555.33, c));
         vendaVeiculos.add(new VendaVeiculo(b2, p1, 10000.33, c));
@@ -81,7 +81,6 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
-    @Override
     public boolean alterarRegistro(Veiculo veiculo1, Veiculo veiculo2)
     {
         for(int i = 0; i < veiculos.size(); i++){
@@ -95,7 +94,6 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
-    @Override
     public boolean excluirRegistro(Veiculo veiculo)
     {
         for(int i = 0; i < veiculos.size(); i++){
