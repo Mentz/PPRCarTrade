@@ -49,6 +49,10 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
+    public boolean validarAdm(Adm adm){
+        return adm == admin;
+    }
+    
     @Override
     public void registrarUsuario(Usuario usuario)
     {
@@ -77,6 +81,7 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
+    @Override
     public boolean alterarRegistro(Veiculo veiculo1, Veiculo veiculo2)
     {
         for(int i = 0; i < veiculos.size(); i++){
@@ -90,6 +95,7 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
+    @Override
     public boolean excluirRegistro(Veiculo veiculo)
     {
         for(int i = 0; i < veiculos.size(); i++){
