@@ -12,9 +12,11 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Lucas
+ * @author Lucas Mentz
  */
 public class NegocioFacade {
+    private static Adm admin = null;
+    
     // Autor: Mentz
     static final DAOFacade registro = DAOMemoria.getInstance();
     
@@ -60,6 +62,8 @@ public class NegocioFacade {
         return registro.listaUsuarios();
     }
     
+   
+    
     // Autor: Mentz
     public static boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email)
     {
@@ -72,10 +76,22 @@ public class NegocioFacade {
         return registro.getStatus();
     }
     
+    public static boolean checaLoginUsuario(String login, String senha){
+        if(registro.checaLogin(login, senha)){
+            return true;
+        }
+        
+        return false;
+    }
+    
     // Autor: Mentz
     public static boolean checaLogin(String login, String senha)
     {
-        return registro.checaLogin(login, senha);
+        Adm tmp = registro.login(login, senha);
+        if (tmp == null)
+            return false;
+        else
+            return true;
     }
     
 }

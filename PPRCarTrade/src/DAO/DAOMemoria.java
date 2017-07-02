@@ -29,10 +29,13 @@ public class DAOMemoria implements DAOFacade {
     protected Adm admin;
     
     private DAOMemoria(){
-        admin.setLogin("admin");
-        admin.setSenha("admin");
+        this.admin = new Adm("admin", "admin", "Teste McTestilson", "05050505092", 12, "teste@mctestilsonveiculos.com",
+                "R. Cajaé 420, São Paulo SP", new Comentario("Olá"), "011 3434 3434");
         this.status = new Status();
-        veiculos = new ArrayList<>();
+        this.veiculos = new ArrayList<>();
+        this.vendaVeiculos = new ArrayList<>();
+        this.usuarios = new ArrayList<>();
+        this.vendedores = new ArrayList<>();
         Comentario c = new Comentario();
         c.setComment("oi");
         Veiculo b1 = new Veiculo(2010, "Exemplo1", "FWW1013", "Exemplo1", "Verde", c);    
@@ -170,7 +173,15 @@ public class DAOMemoria implements DAOFacade {
         if(senha.length() == 0){
             status.addErro("Senha incorreta!");
         }
-        return !status.fail();
+        
+        for(Usuario usr : usuarios){
+            if(login.equals(usr.getLogin()) && senha.equals(usr.getSenha())){
+                return !status.fail();
+            }
+        }
+        
+        status.addErro("Usuario ou Senha incorreto!");
+        return status.fail();
     }
     
     @Override
