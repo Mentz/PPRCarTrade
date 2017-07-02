@@ -12,6 +12,7 @@ import EDA.Status;
 import EDA.Usuario;
 import EDA.Veiculo;
 import EDA.VendaVeiculo;
+import EDA.Vendedor;
 import java.util.ArrayList;
 
 /**
@@ -24,17 +25,21 @@ public class DAOMemoria implements DAOFacade {
     private ArrayList<Veiculo> veiculos;
     private ArrayList<VendaVeiculo> vendaVeiculos;
     private ArrayList<Usuario> usuarios;
+    private ArrayList<Vendedor> vendedores;
+    protected Adm admin;
     
     private DAOMemoria(){
+        admin.setLogin("admin");
+        admin.setSenha("admin");
         this.status = new Status();
         veiculos = new ArrayList<>();
         Comentario c = new Comentario();
         c.setComment("oi");
-        Veiculo b1 = new Veiculo(2010, "Exemplo1", "FWW1013", "Exemplao1", "Verde", c);    
-        Veiculo b2 = new Veiculo(2010, "Exemplo2", "FWY1013", "Exemplao2", "Azul", c);
-        Veiculo b3 = new Veiculo(2010, "Exemplo3", "FWZ1013", "Exemplao3", "Vermelho", c);
-        Veiculo b4 = new Veiculo(2010, "Exemplo4", "FWA1013", "Exemplao4", "Roxo", c);
-        Veiculo b5 = new Veiculo(2010, "Exemplo5", "FWB1013", "Exemplao5", "Dourado", c);
+        Veiculo b1 = new Veiculo(2010, "Exemplo1", "FWW1013", "Exemplo1", "Verde", c);    
+        Veiculo b2 = new Veiculo(2010, "Exemplo2", "FWY1013", "Exemplo2", "Azul", c);
+        Veiculo b3 = new Veiculo(2010, "Exemplo3", "FWZ1013", "Exemplo3", "Vermelho", c);
+        Veiculo b4 = new Veiculo(2010, "Exemplo4", "FWA1013", "Exemplo4", "Roxo", c);
+        Veiculo b5 = new Veiculo(2010, "Exemplo5", "FWB1013", "Exemplo5", "Dourado", c);
         UsuDados p1 = new UsuDados("FF", "120", 5, "as", "as", c, "asas");
         vendaVeiculos.add(new VendaVeiculo(b1, p1, 25555.33, c));
         vendaVeiculos.add(new VendaVeiculo(b2, p1, 10000.33, c));
@@ -44,37 +49,63 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
+    public boolean validarAdm(Adm adm){
+        return adm == admin;
+    }
+    
     @Override
     public void registrarUsuario(Usuario usuario)
     {
         usuarios.add(usuario);
     }
     
-    // Autor: Mentz
+    
+    @Override
+    public void registrarVendedor(Vendedor vendedor){
+        vendedores.add(vendedor);
+    }
+            
     public void registrarVeiculo(Usuario usuario, Veiculo veiculo)
     {
         veiculos.add(veiculo);
     }
     
     // Autor: Mentz
+    //@Override
     @Override
     public Adm login(String login, String senha)
     {
-        
+        if (login.equals(admin.getLogin()) && senha.equals(admin.getSenha()))
+            return admin;
+        return null;
     }
     
     // Autor: Mentz
-    public boolean alterarRegistro(Veiculo veiculo)
+    public boolean alterarRegistro(Veiculo veiculo1, Veiculo veiculo2)
     {
+        for(int i = 0; i < veiculos.size(); i++){
+            if(veiculos.get(i) == veiculo1){
+                veiculos.set(i, veiculo2);
+                return true;
+            }
+        }
         
+        return false;
     }
     
     // Autor: Mentz
-    /*public boolean excluirRegistro(Veiculo veiculo)
+    public boolean excluirRegistro(Veiculo veiculo)
     {
+        for(int i = 0; i < veiculos.size(); i++){
+            if(veiculos.get(i) == veiculo){
+                veiculos.remove(i);
+                return true;
+            }
+        }
         
+        return false;
     }
-    */
+
     // Autor: Mentz
     @Override
     public ArrayList<VendaVeiculo> listaVeiculos(){
@@ -149,16 +180,6 @@ public class DAOMemoria implements DAOFacade {
 
     @Override
     public void registrarVeiculo(Veiculo veiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean alterarRegistro(Adm adm, Veiculo veiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean excluirRegistro(Adm adm, Veiculo veiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        veiculos.add(veiculo);
     }
 }

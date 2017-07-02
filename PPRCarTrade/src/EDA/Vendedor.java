@@ -9,6 +9,8 @@ package EDA;
  *
  * @author weiss
  */
-public class Vendedor {
-    
+public class Vendedor extends UsuDados{
+    public Vendedor(String nome, String cpf, int carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone) {
+        super(nome, cpf, carteira_motorista, e_mail, endereco, coment_usu, fone);
+    }
 }

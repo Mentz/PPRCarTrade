@@ -9,16 +9,16 @@ import EDA.*;
 import java.util.ArrayList;
 /**
  *
- * @author weiss
- * @redator Lucas
+ * @author Lucas Mentz
  */
 public interface DAOFacade {
     public void registrarUsuario(Usuario usuario);
+    public void registrarVendedor(Vendedor vendedor);
     public void registrarVeiculo(Veiculo veiculo);
     public Adm login(String login, String senha);
     public ArrayList<VendaVeiculo> listaVeiculos();
     public ArrayList<Usuario> listaUsuarios();
-    public boolean alterarRegistro(Adm adm, Veiculo veiculo);
+    public boolean alterarRegistro(Adm adm, Veiculo veiculo1, Veiculo veiculo2);
     public boolean excluirRegistro(Adm adm, Veiculo veiculo);
     public boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email);
     public boolean checaLogin(String login, String senha);
