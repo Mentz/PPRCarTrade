@@ -76,11 +76,8 @@ public class NegocioFacade {
     }
     
     public static boolean checaLoginUsuario(String login, String senha){
-        if(registro.checaLogin(login, senha)){
-            return true;
-        }
-        
-        return false;
+        return registro.checaLogin(login, senha);
+
     }
     
     // Autor: Mentz
