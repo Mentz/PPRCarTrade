@@ -15,6 +15,8 @@ import java.util.ArrayList;
  * @author Lucas
  */
 public class NegocioFacade {
+    private static Adm admin = null;
+    
     // Autor: Mentz
     static final DAOFacade registro = DAOMemoria.getInstance();
     
@@ -76,7 +78,11 @@ public class NegocioFacade {
     // Autor: Mentz
     public static boolean checaLogin(String login, String senha)
     {
-        return registro.checaLogin(login, senha);
+        if (admin == null)
+        {
+            admin = new Adm(registro.login(login, senha));
+        }
+        return login.equals(admin.getLogin()) && senha.equals(admin.getSenha());
     }
     
 }
