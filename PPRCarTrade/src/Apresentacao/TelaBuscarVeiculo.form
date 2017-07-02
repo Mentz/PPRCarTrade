@@ -40,11 +40,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jrb_Ano" min="-2" max="-2" attributes="0"/>
                           <Component id="jrb_Modelo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jrb_Marca" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jrb_MenorPreco" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jrb_MaiorPreco" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jrb_Ano" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -72,11 +72,11 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jrb_Ano" min="-2" max="-2" attributes="0"/>
+                      <Component id="jrb_Marca" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jrb_Modelo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jrb_Marca" min="-2" max="-2" attributes="0"/>
+                      <Component id="jrb_Ano" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jrb_MenorPreco" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -99,6 +99,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ano"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_AnoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrb_Modelo">
       <Properties>
@@ -112,11 +115,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Marca"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_MarcaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrb_MenorPreco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Menor pre&#xe7;o"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_MenorPrecoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -138,6 +147,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Maior pre&#xe7;o"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrb_MaiorPrecoActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

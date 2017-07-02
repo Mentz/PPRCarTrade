@@ -41,11 +41,11 @@ public class DAOMemoria implements DAOFacade {
         
         Comentario c = new Comentario();
         c.setComment("oi");
-        Veiculo b1 = new Veiculo(2010, "Exemplo1", "FWW1013", "Exemplo1", "Verde", c);    
-        Veiculo b2 = new Veiculo(2010, "Exemplo2", "FWY1013", "Exemplo2", "Azul", c);
-        Veiculo b3 = new Veiculo(2010, "Exemplo3", "FWZ1013", "Exemplo3", "Vermelho", c);
-        Veiculo b4 = new Veiculo(2010, "Exemplo4", "FWA1013", "Exemplo4", "Roxo", c);
-        Veiculo b5 = new Veiculo(2010, "Exemplo5", "FWB1013", "Exemplo5", "Dourado", c);
+        Veiculo b1 = new Veiculo(2015, "Exemplo1", "FWW1013", "Exemplo5", "Verde", c);    
+        Veiculo b2 = new Veiculo(2013, "Exemplo2", "FWY1013", "Exemplo4", "Azul", c);
+        Veiculo b3 = new Veiculo(2011, "Exemplo3", "FWZ1013", "Exemplo3", "Vermelho", c);
+        Veiculo b4 = new Veiculo(2002, "Exemplo4", "FWA1013", "Exemplo2", "Roxo", c);
+        Veiculo b5 = new Veiculo(2011, "Exemplo5", "FWB1013", "Exemplo1", "Dourado", c);
         UsuDados p1 = new UsuDados("FF", "120", 5, "as", "as", c, "asas");
         vendaVeiculos.add(new VendaVeiculo(b1, p1, 25555.33, c));
         vendaVeiculos.add(new VendaVeiculo(b2, p1, 10000.33, c));

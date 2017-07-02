@@ -5,7 +5,11 @@
  */
 package Apresentacao;
 
-import Apresentacao.Comparadores.NomeComparator;
+import Apresentacao.Comparadores.AnoVeiculoComparator;
+import Apresentacao.Comparadores.MaiorPrecoVeiculoComparator;
+import Apresentacao.Comparadores.MarcaVeiculoComparator;
+import Apresentacao.Comparadores.MenorPrecoVeiculoComparator;
+import Apresentacao.Comparadores.ModeloVeiculoComparator;
 import Negocio.NegocioFacade;
 import EDA.VendaVeiculo;
 import java.util.ArrayList;
@@ -29,15 +33,14 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
     public TelaBuscarVeiculo() {
         initComponents();
         
-        jrb_Modelo.setSelected(true);
-        jrb_Modelo.setActionCommand("Ano");
+        jrb_Marca.setSelected(true);
         
         jlt_Veiculos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         ButtonGroup group = new ButtonGroup();
-        group.add(jrb_Ano);
         group.add(jrb_Marca);
         group.add(jrb_Modelo);
+        group.add(jrb_Ano);
         group.add(jrb_MenorPreco);
         group.add(jrb_MaiorPreco);
     }
@@ -76,6 +79,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         });
 
         jrb_Ano.setText("Ano");
+        jrb_Ano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_AnoActionPerformed(evt);
+            }
+        });
 
         jrb_Modelo.setText("Modelo");
         jrb_Modelo.addActionListener(new java.awt.event.ActionListener() {
@@ -85,8 +93,18 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         });
 
         jrb_Marca.setText("Marca");
+        jrb_Marca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_MarcaActionPerformed(evt);
+            }
+        });
 
         jrb_MenorPreco.setText("Menor preço");
+        jrb_MenorPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_MenorPrecoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         jLabel1.setText("Menu de busca de veiculos");
@@ -95,6 +113,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         jLabel2.setText("Ordenar por:");
 
         jrb_MaiorPreco.setText("Maior preço");
+        jrb_MaiorPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_MaiorPrecoActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jlt_Veiculos);
 
@@ -123,11 +146,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrb_Ano)
                             .addComponent(jrb_Modelo)
                             .addComponent(jrb_Marca)
                             .addComponent(jrb_MenorPreco)
-                            .addComponent(jrb_MaiorPreco))))
+                            .addComponent(jrb_MaiorPreco)
+                            .addComponent(jrb_Ano))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -148,11 +171,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jrb_Ano)
+                        .addComponent(jrb_Marca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jrb_Modelo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jrb_Marca)
+                        .addComponent(jrb_Ano)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jrb_MenorPreco)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,10 +202,13 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         
         ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
         
-        Collections.sort(aux, new NomeComparator());
+        Collections.sort(aux, new ModeloVeiculoComparator());
+        
+        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        list.addElement(cabecalho);
         
         for(VendaVeiculo a : aux){
-            String res = String.format("%-10s %-10s %s %-10s %s %-10s", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), "Cor:", a.getVeiculo().getCor(), "Ano: ", a.getVeiculo().getAno());
+            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
             list.addElement(res);
         }
         
@@ -194,6 +220,82 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btn_CancelarActionPerformed
+
+    private void jrb_AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_AnoActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel list = new DefaultListModel();
+        
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
+        
+        Collections.sort(aux, new AnoVeiculoComparator());
+        
+        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        list.addElement(cabecalho);
+        
+        for(VendaVeiculo a : aux){
+            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+            list.addElement(res);
+        }
+        
+        jlt_Veiculos.setModel(list);
+    }//GEN-LAST:event_jrb_AnoActionPerformed
+
+    private void jrb_MarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_MarcaActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel list = new DefaultListModel();
+        
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
+        
+        Collections.sort(aux, new MarcaVeiculoComparator());
+        
+        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        list.addElement(cabecalho);
+        
+        for(VendaVeiculo a : aux){
+            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+            list.addElement(res);
+        }
+        
+        jlt_Veiculos.setModel(list);
+    }//GEN-LAST:event_jrb_MarcaActionPerformed
+
+    private void jrb_MenorPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_MenorPrecoActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel list = new DefaultListModel();
+        
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
+        
+        Collections.sort(aux, new MenorPrecoVeiculoComparator());
+        
+        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        list.addElement(cabecalho);
+        
+        for(VendaVeiculo a : aux){
+            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+            list.addElement(res);
+        }
+        
+        jlt_Veiculos.setModel(list);
+    }//GEN-LAST:event_jrb_MenorPrecoActionPerformed
+
+    private void jrb_MaiorPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_MaiorPrecoActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel list = new DefaultListModel();
+        
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
+        
+        Collections.sort(aux, new MaiorPrecoVeiculoComparator());
+        
+        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        list.addElement(cabecalho);
+        
+        for(VendaVeiculo a : aux){
+            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+            list.addElement(res);
+        }
+        
+        jlt_Veiculos.setModel(list);
+    }//GEN-LAST:event_jrb_MaiorPrecoActionPerformed
     
     /**
      * @param args the command line arguments
