@@ -29,10 +29,11 @@ public class DAOMemoria implements DAOFacade {
     protected Adm admin;
     
     private DAOMemoria(){
-        admin = new Adm("admin", "admin", "Teste McTestilson", "05050505092", 12, "teste@mctestilsonveiculos.com",
-                "R. Cajaé 420, São Paulo SP", new Comentario("Oi"), "011 3434 3434");
+        this.admin = new Adm("admin", "admin", "Teste McTestilson", "05050505092", 12, "teste@mctestilsonveiculos.com",
+                "R. Cajaé 420, São Paulo SP", new Comentario("Olá"), "011 3434 3434");
         this.status = new Status();
-        veiculos = new ArrayList<>();
+        this.veiculos = new ArrayList<Veiculo>();
+        this.vendaVeiculos = new ArrayList<VendaVeiculo>();
         Comentario c = new Comentario();
         c.setComment("oi");
         Veiculo b1 = new Veiculo(2010, "Exemplo1", "FWW1013", "Exemplo1", "Verde", c);    

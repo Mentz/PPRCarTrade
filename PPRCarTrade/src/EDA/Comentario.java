@@ -12,7 +12,7 @@ public class Comentario {
     // Construtor sem argumentos
     public Comentario()
     {
-        this.comment = new String("");
+        this.comment = new String();
     }
     
     // Autor: Mentz
