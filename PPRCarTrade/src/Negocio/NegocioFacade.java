@@ -91,9 +91,19 @@ public class NegocioFacade {
             return true;
     }
     
-    //Autor: Arthur
-    public static void registrarVenda(VendaVeiculo venda){
-        registro.registrarVenda(venda);
+    //Autor: Arthur e Felipe Weiss
+    public static boolean registrarVenda(VendaVeiculo venda){        
+        if(venda.getVeiculo().getAno() < 1900){
+            NegocioFacade.getStatus().addErro("Ano não pode ser tão baixo!");
+        }
+        if(venda.getPreco() < 0){
+            NegocioFacade.getStatus().addErro("Valor de venda não pode ser negativo!");
+        }
+        if(!NegocioFacade.getStatus().fail()){
+            registro.registrarVenda(venda);
+            return true;
+        }
+        return false;
     }
     
 }

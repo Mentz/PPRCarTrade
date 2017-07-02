@@ -6,6 +6,7 @@
 package Apresentacao;
 
 import EDA.VendaVeiculo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -87,11 +88,21 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
         jlb_Email = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                Fechando(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         jLabel10.setText("Informações gerais do veículo");
 
         btn_Confirmar.setText("Confirmar");
+        btn_Confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ConfirmarActionPerformed(evt);
+            }
+        });
 
         btn_Cancelar.setText("Cancelar");
         btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -255,6 +266,17 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
             //jta_Comentario.setVisible(true);
         }
     }//GEN-LAST:event_btn_ComentarActionPerformed
+
+    private void btn_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Veiculo comprado com sucesso!");
+        this.dispose();
+    }//GEN-LAST:event_btn_ConfirmarActionPerformed
+
+    private void Fechando(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Fechando
+        // TODO add your handling code here:
+        tela.setEnabled(true);
+    }//GEN-LAST:event_Fechando
 
     /**
      * @param args the command line arguments

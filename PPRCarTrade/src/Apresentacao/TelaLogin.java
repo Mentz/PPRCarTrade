@@ -133,8 +133,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
         String login = jtf_Login.getText();
-        String senha = new String(jpf_Password.getPassword());   
-        System.out.println(senha);
+        String senha = new String(jpf_Password.getPassword());  
         if (!NegocioFacade.checaLogin(login, senha))
         {
             JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);

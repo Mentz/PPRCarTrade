@@ -171,10 +171,13 @@ public class DAOMemoria implements DAOFacade {
     @Override
     public boolean checaLogin(String login, String senha){
         if(login.length() == 0){
-            status.addErro("Login incorreto!");
+            status.addErro("Login não pode ter tamanho 0!");
         }
         if(senha.length() == 0){
-            status.addErro("Senha incorreta!");
+            status.addErro("Senha não pode ter tamanho 0!");            
+        }
+        if(status.fail()){
+            return false;
         }
         
         for(Usuario usr : usuarios){
@@ -183,7 +186,7 @@ public class DAOMemoria implements DAOFacade {
             }
         }
         
-        status.addErro("Usuario ou Senha incorreto!");
+        status.addErro("Usuario ou senha incorreto!");
         return false;
     }
     
