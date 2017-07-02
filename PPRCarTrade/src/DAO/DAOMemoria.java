@@ -29,8 +29,8 @@ public class DAOMemoria implements DAOFacade {
     protected Adm admin;
     
     private DAOMemoria(){
-        admin.setLogin("admin");
-        admin.setSenha("admin");
+        admin = new Adm("admin", "admin", "Teste McTestilson", "05050505092", 12, "teste@mctestilsonveiculos.com",
+                "R. Cajaé 420, São Paulo SP", new Comentario("Oi"), "011 3434 3434");
         this.status = new Status();
         veiculos = new ArrayList<>();
         Comentario c = new Comentario();
