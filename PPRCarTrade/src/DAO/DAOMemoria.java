@@ -176,12 +176,12 @@ public class DAOMemoria implements DAOFacade {
         
         for(Usuario usr : usuarios){
             if(login.equals(usr.getLogin()) && senha.equals(usr.getSenha())){
-                return !status.fail();
+                return true;
             }
         }
         
         status.addErro("Usuario ou Senha incorreto!");
-        return status.fail();
+        return false;
     }
     
     @Override
