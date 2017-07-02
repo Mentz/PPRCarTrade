@@ -34,6 +34,8 @@ public class DAOMemoria implements DAOFacade {
         this.status = new Status();
         this.veiculos = new ArrayList<>();
         this.vendaVeiculos = new ArrayList<>();
+        this.usuarios = new ArrayList<>();
+        this.vendedores = new ArrayList<>();
         Comentario c = new Comentario();
         c.setComment("oi");
         Veiculo b1 = new Veiculo(2010, "Exemplo1", "FWW1013", "Exemplo1", "Verde", c);    
@@ -171,7 +173,15 @@ public class DAOMemoria implements DAOFacade {
         if(senha.length() == 0){
             status.addErro("Senha incorreta!");
         }
-        return !status.fail();
+        
+        for(Usuario usr : usuarios){
+            if(login.equals(usr.getLogin()) && senha.equals(usr.getSenha())){
+                return !status.fail();
+            }
+        }
+        
+        status.addErro("Usuario ou Senha incorreto!");
+        return status.fail();
     }
     
     @Override
