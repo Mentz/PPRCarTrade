@@ -78,11 +78,11 @@ public class NegocioFacade {
     // Autor: Mentz
     public static boolean checaLogin(String login, String senha)
     {
-        if (admin == null)
-        {
-            admin = new Adm(registro.login(login, senha));
-        }
-        return login.equals(admin.getLogin()) && senha.equals(admin.getSenha());
+        Adm tmp = registro.login(login, senha);
+        if (tmp == null)
+            return false;
+        else
+            return true;
     }
     
 }

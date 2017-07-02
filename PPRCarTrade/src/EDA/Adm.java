@@ -14,15 +14,6 @@ public class Adm extends UsuDados{
         this.senha = senha;
     }
     
-    // Autor: Mentz
-    // Construtor por cópia
-    public Adm(Adm copia)
-    {
-        super(copia.getNome(), copia.getCpf(), copia.getCarteiraMotorista(), copia.getEmail(), copia.getEndereco(), copia.getComentUsu(), copia.getFone());
-        this.login = copia.login;
-        this.senha = copia.senha;
-    }
-    
     /*-------------------------------------*/
     public String getLogin(){
         return login;
