@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Lucas
+ * @author Lucas Mentz
  */
 public class NegocioFacade {
     private static Adm admin = null;
