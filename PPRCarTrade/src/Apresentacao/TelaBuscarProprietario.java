@@ -10,7 +10,9 @@ import EDA.Usuario;
 import Negocio.NegocioFacade;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -21,8 +23,20 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     /**
      * Creates new form TelaBuscarProprietario
      */
+    TelaNegocio tela;
     public TelaBuscarProprietario() {
         initComponents();
+        
+        
+        Proprietario.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        
+        
+    }
+
+     public TelaBuscarProprietario(TelaNegocio tela){
+        this();
+        this.tela = tela;        
     }
 
     /**
@@ -50,11 +64,16 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
         email = new javax.swing.JRadioButton();
         fone = new javax.swing.JRadioButton();
         buscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bnt_Cancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Proprietario = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                Fechando(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         jLabel1.setText("Menu de busca de proprietário");
@@ -63,11 +82,6 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
         jLabel2.setText("Ordenar por:");
 
         nome.setText("Nome");
-        nome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeActionPerformed(evt);
-            }
-        });
 
         cpf.setText("CPF");
 
@@ -82,7 +96,12 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
+        bnt_Cancelar.setText("Cancelar");
+        bnt_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bnt_CancelarActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(Proprietario);
 
@@ -108,7 +127,7 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(jButton2))
+                                .addComponent(bnt_Cancelar))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -135,41 +154,44 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscar)
-                    .addComponent(jButton2))
+                    .addComponent(bnt_Cancelar))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_nomeActionPerformed
-
+   
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
         DefaultListModel list = new DefaultListModel();
-        
-        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
-        
 
-        
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
+
         Collections.sort(aux, new ProprietarioComparador());
 
-       
-        
         for (Usuario a : aux){
             String res = String.format("%-10s %-10s %s %-10s %s %-10s",
                 "Nome:", a.getNome(), "CPF: ",a.getCpf(), "Email: ", a.getEmail(),
                 "Endereço: ", a.getEndereco(),"Telefone: ", a.getFone());
             list.addElement(res);
         }
-        
+
         Proprietario.setModel(list);
     }//GEN-LAST:event_buscarActionPerformed
 
-    /**
+    private void bnt_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_CancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_bnt_CancelarActionPerformed
+
+    private void Fechando(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Fechando
+        // TODO add your handling code here:
+        tela.setEnabled(true);
+    }//GEN-LAST:event_Fechando
+
+     /**
+   
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -206,6 +228,7 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> Proprietario;
+    private javax.swing.JButton bnt_Cancelar;
     private javax.swing.JButton buscar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -219,7 +242,6 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     private javax.swing.JRadioButton cpf;
     private javax.swing.JRadioButton email;
     private javax.swing.JRadioButton fone;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
