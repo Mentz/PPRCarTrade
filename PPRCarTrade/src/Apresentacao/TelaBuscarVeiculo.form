@@ -88,9 +88,9 @@
                   <Component id="jScrollPane1" min="-2" pref="186" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btn_Confirmar" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btn_Cancelar" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_Confirmar" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>

@@ -187,9 +187,9 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
                         .addComponent(jrb_MaiorPreco))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Confirmar)
-                    .addComponent(btn_Cancelar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_Cancelar)
+                    .addComponent(btn_Confirmar))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -202,11 +202,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_Fechando
     
     private String formatCabecalho(){
-        return String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        return String.format("%-18s %-18s %-15s %-18s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
     }
     
     private String formatSaida(VendaVeiculo a){
-        return String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+        return String.format("%-15s %-15s %-15s %-15s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
     }
     
     private void jrb_ModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_ModeloActionPerformed
