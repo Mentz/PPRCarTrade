@@ -20,7 +20,11 @@ public class Comentario {
     // Construtor com argumento Comentário
     public Comentario(String comentario)
     {
-        this.comment = comentario + "\n";
+        if(comentario != ""){
+            this.comment = comentario + "\n";
+        } else {
+            this.comment = "";
+        }
     }    
     
     public String getComment(){

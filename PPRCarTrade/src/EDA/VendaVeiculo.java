@@ -8,7 +8,7 @@ public class VendaVeiculo {
     private Veiculo veiculo;
     private UsuDados proprietario;
     private double preco;
-    private Comentario adicionais;
+    private Comentario comentario;
     
     /*-----------------------------------*/
     
@@ -16,7 +16,7 @@ public class VendaVeiculo {
         this.veiculo = veiculo;
         this.proprietario = proprietario;
         this.preco = preco;
-        this.adicionais = c;
+        this.comentario = c;
     }
     
     public Veiculo getVeiculo(){
@@ -40,11 +40,11 @@ public class VendaVeiculo {
         this.preco = preco;
     }
     
-    public Comentario getAdicionais(){
-        return adicionais;
+    public Comentario getComentarios(){
+        return comentario;
     }
-    public void setAdicionais(Comentario adicionais){
-        this.adicionais = adicionais;
+    public void setComentarios(Comentario comentario){
+        this.comentario = new Comentario(this.comentario.getComment() + "\n" + comentario.getComment());
     }
     
     /*-----------------------------------*/

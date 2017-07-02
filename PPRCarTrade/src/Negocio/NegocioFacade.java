@@ -122,4 +122,25 @@ public class NegocioFacade {
         return !NegocioFacade.getStatus().fail();
     }
     
+    public static boolean adicionarComentarioVeiculo(VendaVeiculo veiculo, String comentario){
+        if(comentario.length() > 0){
+            registro.adicionarComentarioVeiculo(veiculo, comentario);
+        } else {
+            getStatus().addErro("Comentário não pode ser vazio!");
+        }
+        return !getStatus().fail();
+    }
+    
+    public static String getComentariosUsuario(UsuDados usuario){
+        ArrayList<Usuario> aux = registro.listaUsuarios();
+        int idx = 0;
+        for(Usuario a : aux){
+            if(a.getCpf().equals(usuario.getCpf())){
+                return aux.get(idx).getComentUsu().getComment();
+            }
+            idx++;
+        }
+        return "";
+    }
+    
 }

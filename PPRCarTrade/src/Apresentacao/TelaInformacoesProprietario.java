@@ -7,6 +7,7 @@ package Apresentacao;
 
 import EDA.UsuDados;
 import Negocio.NegocioFacade;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -71,6 +72,7 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jta_Comentario = new javax.swing.JTextArea();
+        btn_Informacoes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -129,6 +131,13 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
         jta_Comentario.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jta_Comentario);
 
+        btn_Informacoes.setText("Informações adicionais");
+        btn_Informacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_InformacoesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,16 +145,9 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addComponent(btn_Comentar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 16, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,6 +172,14 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1)))))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Comentar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +213,8 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Voltar)
-                    .addComponent(btn_Comentar))
+                    .addComponent(btn_Comentar)
+                    .addComponent(btn_Informacoes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -231,9 +242,22 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
             comentarioJaAberto = true;
             this.setSize(this.getWidth(), this.getHeight() + (jta_Comentario.getHeight() + 10));
         } else {
-            NegocioFacade.adicionarComentarioUsuario(proprietario, jta_Comentario.getText());
+            if(NegocioFacade.adicionarComentarioUsuario(proprietario, jta_Comentario.getText())){
+                JOptionPane.showMessageDialog(this, "Comentário adicionado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btn_ComentarActionPerformed
+
+    private void btn_InformacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InformacoesActionPerformed
+        // TODO add your handling code here:
+        String aux = NegocioFacade.getComentariosUsuario(proprietario);
+        if(aux == ""){
+            aux = "Nenhum comentário a respeito deste usuário";
+        }
+        JOptionPane.showMessageDialog(this, aux, "Informações sobre o usuário", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btn_InformacoesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,6 +297,7 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Comentar;
+    private javax.swing.JButton btn_Informacoes;
     private javax.swing.JButton btn_Voltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -35,23 +35,27 @@ public class DAOMemoria implements DAOFacade {
         this.veiculos = new ArrayList<>();
         this.vendaVeiculos = new ArrayList<>();
         this.usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("teste", "teste", "Testano", "00000000000", "00000000000", "teste@sex.com", "rua teste, 666", new EDA.Comentario("é só um teste\n"), "4792230226"));
+        usuarios.add(new Usuario("teste", "teste", "Testano", "00000000000", "00000000000", "teste@sex.com", "rua teste, 666", new EDA.Comentario(""), "4792230226"));
+        usuarios.add(new Usuario("usu1", "usu1", "Testador", "00000000000", "00000000000", "usu1@sedex.com", "Rua: Carlitos, 333", new EDA.Comentario(""), "4712345678"));
+        usuarios.add(new Usuario("usu2", "usu2", "Testadora", "00000000000", "00000000000", "usu2@sedex.com", "Rua: Carlitas, 123", new EDA.Comentario(""), "4787654321"));
         this.vendedores = new ArrayList<>();
         
         
         Comentario c = new Comentario();
-        c.setComment("oi");
-        Veiculo b1 = new Veiculo(2015, "Exemplo1", "FWW1013", "Exemplo5", "Verde", c);    
-        Veiculo b2 = new Veiculo(2013, "Exemplo2", "FWY1013", "Exemplo4", "Azul", c);
-        Veiculo b3 = new Veiculo(2011, "Exemplo3", "FWZ1013", "Exemplo3", "Vermelho", c);
-        Veiculo b4 = new Veiculo(2002, "Exemplo4", "FWA1013", "Exemplo2", "Roxo", c);
-        Veiculo b5 = new Veiculo(2011, "Exemplo5", "FWB1013", "Exemplo1", "Dourado", c);
-        UsuDados p1 = new UsuDados("Testano", "00000000000", "00000000000", "teste@sex.com", "rua teste, 666", new EDA.Comentario("é só um teste\n"), "4792230226");
-        vendaVeiculos.add(new VendaVeiculo(b1, p1, 25555.33, c));
-        vendaVeiculos.add(new VendaVeiculo(b2, p1, 10000.33, c));
-        vendaVeiculos.add(new VendaVeiculo(b3, p1, 5626.33, c));
-        vendaVeiculos.add(new VendaVeiculo(b4, p1, 300000.33, c));
-        vendaVeiculos.add(new VendaVeiculo(b5, p1, 132000.33, c));
+        c.setComment("");
+        Veiculo b1 = new Veiculo(2002, "Carro", "FWW1013", "Tuca", "Verde", c);    
+        Veiculo b2 = new Veiculo(1970, "Carrito", "FWY1013", "Avila", "Azul", c);
+        Veiculo b3 = new Veiculo(1930, "Carroça", "FWZ1013", "Mentz", "Vermelho", c);
+        Veiculo b4 = new Veiculo(1990, "Quase carro", "FWA1013", "Leo", "Roxo", c);
+        Veiculo b5 = new Veiculo(2017, "MotoCarExpress", "FWB1013", "Weiss", "Dourado", c);
+        UsuDados p1 = new UsuDados("Testano", "00000000000", "00000000000", "teste@sex.com", "rua teste, 666", new EDA.Comentario(""), "4792230226");
+        UsuDados p2 = new UsuDados("Testador", "00000000000", "00000000000", "usu1@sedex.com", "Rua: Carlitos, 333", new EDA.Comentario(), "4712345678");
+        UsuDados p3 = new UsuDados("Testadora", "00000000000", "00000000000", "usu2@sedex.com", "Rua: Carlitas, 123", new EDA.Comentario(), "4787654321");
+        vendaVeiculos.add(new VendaVeiculo(b1, p2, 30000, c));
+        vendaVeiculos.add(new VendaVeiculo(b2, p3, 20250.50, c));
+        vendaVeiculos.add(new VendaVeiculo(b3, p3, 2785.18, c));
+        vendaVeiculos.add(new VendaVeiculo(b4, p1, 29999, c));
+        vendaVeiculos.add(new VendaVeiculo(b5, p2, 675250.02, c));
     }
     
     // Autor: Mentz
@@ -247,6 +251,11 @@ public class DAOMemoria implements DAOFacade {
             }
             idx++;
         }
-        System.out.println(usuarios.get(idx).getComentUsu().getComment());
+    }
+    
+    @Override
+    public void adicionarComentarioVeiculo(VendaVeiculo veiculo, String comentario){
+        int idx = vendaVeiculos.indexOf(veiculo);
+        vendaVeiculos.get(idx).setComentarios(new Comentario(comentario));
     }
 }

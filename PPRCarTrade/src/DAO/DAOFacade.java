@@ -28,4 +28,5 @@ public interface DAOFacade {
     public void registrarVenda(VendaVeiculo venda);
     public boolean checaVendedor(Vendedor vendedor);
     public void adicionarComentarioUsuario(UsuDados proprietario, String comentario);
+    public void adicionarComentarioVeiculo(VendaVeiculo veiculo, String comentario);
 }
