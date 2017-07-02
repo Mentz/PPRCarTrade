@@ -35,7 +35,10 @@ public class DAOMemoria implements DAOFacade {
         this.veiculos = new ArrayList<>();
         this.vendaVeiculos = new ArrayList<>();
         this.usuarios = new ArrayList<>();
+        usuarios.add(new Usuario("teste", "teste", "Testano Programsilva", "00000000000", 0, "teste@sex.com", "rua teste, 666", new EDA.Comentario("é só um teste"), "4792230226"));
         this.vendedores = new ArrayList<>();
+        
+        
         Comentario c = new Comentario();
         c.setComment("oi");
         Veiculo b1 = new Veiculo(2010, "Exemplo1", "FWW1013", "Exemplo1", "Verde", c);    
