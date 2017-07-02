@@ -70,6 +70,16 @@ public class DAOMemoria implements DAOFacade {
     public void registrarVendedor(Vendedor vendedor){
         vendedores.add(vendedor);
     }
+
+    @Override
+    public void adicionarVeiculoVendedor(Vendedor vendedor, Veiculo veiculo){
+        for(int i = 0; i < vendedores.size(); i++){
+            if(vendedores.get(i).equals(vendedor)){
+                vendedores.get(i).cadastrarVeiculo(veiculo);
+                break;
+            }
+        }
+    }
             
     public void registrarVeiculo(Usuario usuario, Veiculo veiculo)
     {
@@ -207,5 +217,22 @@ public class DAOMemoria implements DAOFacade {
     @Override
     public void registrarVenda(VendaVeiculo venda){
         vendaVeiculos.add(venda);
+    }
+    
+    @Override
+    public boolean checaVendedor(Vendedor vendedor){
+        for(Vendedor vnd : vendedores){
+            if(vendedor.equals(vnd)){
+                return true;
+            }
+        }
+        
+        status.addErro("Vendedor não encontrado");
+        return false;
+    }
+    
+    @Override
+    public ArrayList<Vendedor> listaVendedores() {
+        return this.vendedores;
     }
 }

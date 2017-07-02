@@ -91,6 +91,12 @@ public class NegocioFacade {
             return true;
     }
     
+    public static void adicionarVeiculoVendedor(Vendedor vendedor, Veiculo veiculo){
+        if(registro.checaVendedor(vendedor)){
+            registro.adicionarVeiculoVendedor(vendedor, veiculo);
+        }
+    }
+    
     //Autor: Arthur e Felipe Weiss
     public static boolean registrarVenda(VendaVeiculo venda){        
         if(venda.getVeiculo().getAno() < 1900){

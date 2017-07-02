@@ -18,10 +18,13 @@ public interface DAOFacade {
     public Adm login(String login, String senha);
     public ArrayList<VendaVeiculo> listaVeiculos();
     public ArrayList<Usuario> listaUsuarios();
+    public ArrayList<Vendedor> listaVendedores();
+    public void adicionarVeiculoVendedor(Vendedor vendedor, Veiculo veiculo);
     public boolean alterarRegistro(Veiculo veiculo, Veiculo newVeiculo);
     public boolean excluirRegistro(Veiculo veiculo);
     public boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email);
     public boolean checaLogin(String login, String senha);
     public Status getStatus();
     public void registrarVenda(VendaVeiculo venda);
+    public boolean checaVendedor(Vendedor vendedor);
 }
