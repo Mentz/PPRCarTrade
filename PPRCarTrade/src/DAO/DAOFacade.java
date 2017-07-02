@@ -27,4 +27,5 @@ public interface DAOFacade {
     public Status getStatus();
     public void registrarVenda(VendaVeiculo venda);
     public boolean checaVendedor(Vendedor vendedor);
+    public void adicionarComentarioUsuario(UsuDados proprietario, String comentario);
 }

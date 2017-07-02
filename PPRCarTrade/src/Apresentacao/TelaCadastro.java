@@ -209,7 +209,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         String telefone = jtf_Telefone.getText();
         String email = jtf_Email.getText();
         if(NegocioFacade.checaCadastro(nome, rg, cpf, telefone, email)){
-            NegocioFacade.registrarUsuario(new EDA.Usuario(login, senha, nome, cpf, 0, email, "Rua abobrinha", new EDA.Comentario("que tedio"), telefone));
+            NegocioFacade.registrarUsuario(new EDA.Usuario(login, senha, nome, cpf, "00000000000", email, "Rua abobrinha", new EDA.Comentario("que tedio"), telefone));
             //(String login, String senha, String nome, String cpf, int carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone)
             JOptionPane.showMessageDialog(this, "Cadastro efetuado com sucesso!", "Cadastrado!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();

@@ -8,7 +8,7 @@ public class Usuario extends UsuDados{
     private String login;
     private String senha;
    
-    public Usuario(String login, String senha, String nome, String cpf, int carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone) {
+    public Usuario(String login, String senha, String nome, String cpf, String carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone) {
         super(nome, cpf, carteira_motorista, e_mail, endereco, coment_usu, fone);
         this.login = login;
         this.senha = senha;

@@ -20,6 +20,7 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
     
     private TelaBuscarVeiculo tela;
     private boolean comentarioJaAberto = false;
+    private VendaVeiculo veiculo;
     
     public TelaEspecificacaoVeiculo() {
         initComponents();
@@ -43,6 +44,7 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
         this();
         this.tela = tela;
         this.tela.setEnabled(false);
+        this.veiculo = veiculo;
         
         jtf_Marca.setText(veiculo.getVeiculo().getMarca());
         jtf_Modelo.setText(veiculo.getVeiculo().getModelo());
@@ -86,6 +88,7 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
         jtf_Email = new javax.swing.JTextField();
         jlb_Telefone = new javax.swing.JLabel();
         jlb_Email = new javax.swing.JLabel();
+        btn_InformacoesProprietario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -150,52 +153,60 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
         jlb_Email.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         jlb_Email.setText("Email:");
 
+        btn_InformacoesProprietario.setText("+");
+        btn_InformacoesProprietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_InformacoesProprietarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jlb_Telefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlb_Proprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlb_Modelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlb_Cor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlb_Ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlb_Preco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlb_Email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlb_Marca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtf_Email, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtf_Marca, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtf_Telefone, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtf_Cor)
+                    .addComponent(jtf_Modelo)
+                    .addComponent(jtf_Ano)
+                    .addComponent(jtf_Preco)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jtf_Proprietario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_InformacoesProprietario)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jlb_Telefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlb_Proprietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlb_Modelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlb_Cor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlb_Ano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlb_Preco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlb_Email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlb_Marca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtf_Email, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtf_Marca, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtf_Telefone, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtf_Proprietario)
-                            .addComponent(jtf_Cor)
-                            .addComponent(jtf_Modelo)
-                            .addComponent(jtf_Ano)
-                            .addComponent(jtf_Preco)))
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel10))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(jLabel10))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(btn_Comentar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 6, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel11)
+                        .addGap(41, 41, 41)
+                        .addComponent(btn_Comentar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
+                        .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 100, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,7 +236,8 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlb_Proprietario)
-                    .addComponent(jtf_Proprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_Proprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_InformacoesProprietario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlb_Telefone)
@@ -264,6 +276,8 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
             comentarioJaAberto = true;
             this.setSize(this.getWidth(), this.getHeight() + jta_Comentario.getHeight() + 10);
             //jta_Comentario.setVisible(true);
+        } else {
+            
         }
     }//GEN-LAST:event_btn_ComentarActionPerformed
 
@@ -277,6 +291,12 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         tela.setEnabled(true);
     }//GEN-LAST:event_Fechando
+
+    private void btn_InformacoesProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InformacoesProprietarioActionPerformed
+        // TODO add your handling code here:
+        this.setEnabled(false);
+        new TelaInformacoesProprietario(this, this.veiculo.getProprietario()).setVisible(true);
+    }//GEN-LAST:event_btn_InformacoesProprietarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,6 +337,7 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
     private javax.swing.JButton btn_Cancelar;
     private javax.swing.JButton btn_Comentar;
     private javax.swing.JButton btn_Confirmar;
+    private javax.swing.JButton btn_InformacoesProprietario;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JScrollPane jScrollPane1;

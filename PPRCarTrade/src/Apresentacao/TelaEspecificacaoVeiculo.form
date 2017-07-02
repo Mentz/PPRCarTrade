@@ -26,57 +26,57 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jlb_Telefone" max="32767" attributes="0"/>
-                          <Component id="jlb_Proprietario" max="32767" attributes="0"/>
-                          <Component id="jlb_Modelo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jlb_Cor" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jlb_Ano" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jlb_Preco" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jlb_Email" max="32767" attributes="0"/>
-                          <Component id="jlb_Marca" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtf_Email" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jtf_Marca" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jtf_Telefone" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jtf_Proprietario" max="32767" attributes="0"/>
-                          <Component id="jtf_Cor" max="32767" attributes="0"/>
-                          <Component id="jtf_Modelo" max="32767" attributes="0"/>
-                          <Component id="jtf_Ano" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jtf_Preco" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="btn_Comentar" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btn_Confirmar" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btn_Cancelar" min="-2" pref="110" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jlb_Telefone" max="32767" attributes="0"/>
+                  <Component id="jlb_Proprietario" max="32767" attributes="0"/>
+                  <Component id="jlb_Modelo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jlb_Cor" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jlb_Ano" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jlb_Preco" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jlb_Email" max="32767" attributes="0"/>
+                  <Component id="jlb_Marca" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jtf_Email" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jtf_Marca" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jtf_Telefone" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jtf_Cor" max="32767" attributes="0"/>
+                  <Component id="jtf_Modelo" max="32767" attributes="0"/>
+                  <Component id="jtf_Ano" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jtf_Preco" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jtf_Proprietario" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_InformacoesProprietario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="btn_Comentar" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_Confirmar" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_Cancelar" min="-2" pref="110" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,6 +114,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlb_Proprietario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtf_Proprietario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_InformacoesProprietario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -280,6 +281,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Email:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_InformacoesProprietario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_InformacoesProprietarioActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -7,7 +7,7 @@ package EDA;
 public class UsuDados {
     private String nome;
     private String cpf;
-    private int carteira_motorista;
+    private String carteira_motorista;
     private String e_mail;
     private String endereco;
     private Comentario coment_usu;
@@ -15,7 +15,7 @@ public class UsuDados {
     
     
     /*-----------------------------------*/
-    public UsuDados(String nome, String cpf, int carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone){
+    public UsuDados(String nome, String cpf, String carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone){
         this.nome = nome;
         this.cpf = cpf;
         this.carteira_motorista = carteira_motorista;
@@ -39,10 +39,10 @@ public class UsuDados {
         this.cpf = cpf;
     }
     
-    public int getCarteiraMotorista(){
+    public String getCarteiraMotorista(){
         return carteira_motorista;
     }
-    public void setCarteiraMotorista(int carteira_motorista){
+    public void setCarteiraMotorista(String carteira_motorista){
         this.carteira_motorista = carteira_motorista;
     }
     

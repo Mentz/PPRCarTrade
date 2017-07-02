@@ -20,14 +20,14 @@ public class Comentario {
     // Construtor com argumento Comentário
     public Comentario(String comentario)
     {
-        this.comment = comentario;
+        this.comment = comentario + "\n";
     }    
     
     public String getComment(){
         return comment;
     }
     public void setComment(String comment){
-        this.comment = comment;
+        this.comment += comment + "\n";
     }
     /*-----------------------------------*/
     

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Apresentacao;
+import EDA.Comentario;
+import EDA.Vendedor;
 import Negocio.NegocioFacade;
 import javax.swing.JOptionPane;
 /**
@@ -15,10 +17,17 @@ public class TelaCadastroVendedor extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroVendedor
      */
+    private TelaNegocio tela;
+    
     public TelaCadastroVendedor() {
         initComponents();
     }
-
+    
+    public TelaCadastroVendedor(TelaNegocio tela){
+        this();
+        this.tela = tela;
+        tela.setEnabled(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,12 +37,6 @@ public class TelaCadastroVendedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jtf_Email13 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        jtf_Email14 = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        jtf_Email15 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
         jtf_telefone = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jtf_email = new javax.swing.JTextField();
@@ -46,94 +49,190 @@ public class TelaCadastroVendedor extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jtf_carteira = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jtf_comentarios = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        label1 = new java.awt.Label();
-        btn_cadastrar = new java.awt.Button();
-        btn_cancelar = new java.awt.Button();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jta_Comentario = new javax.swing.JTextArea();
+        btn_Cadastrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        jLabel19.setText("CPF");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                Fechando(evt);
+            }
+        });
 
-        jLabel20.setText("CPF");
+        jLabel13.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        jLabel13.setText("Telefone:");
 
-        jLabel21.setText("CPF");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jtf_telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 241, 370, -1));
-
-        jLabel13.setText("Telefone");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 244, -1, -1));
-        getContentPane().add(jtf_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 189, 370, -1));
-
+        jLabel14.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         jLabel14.setText("Email");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 192, -1, -1));
-        getContentPane().add(jtf_endereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 215, 370, -1));
 
-        jLabel15.setText("Endereço");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 218, -1, -1));
+        jLabel15.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        jLabel15.setText("Endereço:");
 
         jtf_nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtf_nomeActionPerformed(evt);
             }
         });
-        getContentPane().add(jtf_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 370, -1));
 
-        jLabel16.setText("Nome");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 114, -1, -1));
-        getContentPane().add(jtf_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 137, 370, -1));
+        jLabel16.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        jLabel16.setText("Nome:");
 
-        jLabel17.setText("CPF");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
-        getContentPane().add(jtf_carteira, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 163, 370, -1));
+        jLabel17.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        jLabel17.setText("CPF:");
 
-        jLabel18.setText("Carteiro motorista");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 166, -1, -1));
-        getContentPane().add(jtf_comentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 267, 370, -1));
+        jLabel18.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        jLabel18.setText("Cart. Motorista:");
 
-        jLabel22.setText("Comentários");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+        jLabel22.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        jLabel22.setText("Comentários:");
 
-        label1.setFont(new java.awt.Font("Ebrima", 0, 48)); // NOI18N
-        label1.setText("Cadastro de vendedor");
-        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 18, -1, -1));
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 24)); // NOI18N
+        jLabel1.setText("Cadastro de vendedor");
 
-        btn_cadastrar.setLabel("Cadastra");
-        btn_cadastrar.setName(""); // NOI18N
-        btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jta_Comentario.setColumns(20);
+        jta_Comentario.setRows(5);
+        jScrollPane1.setViewportView(jta_Comentario);
+
+        btn_Cadastrar.setText("Cadastrar");
+        btn_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cadastrarActionPerformed(evt);
+                btn_CadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
 
-        btn_cancelar.setLabel("Cancelar");
-        btn_cancelar.setName(""); // NOI18N
-        getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, -1, -1));
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtf_nome)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 129, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                            .addComponent(jtf_endereco)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtf_cpf))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9))
+                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtf_telefone)
+                            .addComponent(jtf_carteira)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtf_email))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jtf_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtf_carteira, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtf_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtf_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_Cadastrar)
+                            .addComponent(jButton1)))
+                    .addComponent(jLabel22))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
+    private void jtf_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_nomeActionPerformed
+
+    private void Fechando(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Fechando
+        // TODO add your handling code here:
+        tela.setEnabled(true);
+    }//GEN-LAST:event_Fechando
+
+    private void btn_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarActionPerformed
+        // TODO add your handling code here:
         String nome = jtf_nome.getText();
         String cpf  = jtf_cpf.getText();
         String telefone = jtf_telefone.getText();
         String email = jtf_email.getText();
         String endereco = jtf_endereco.getText();
-        EDA.Comentario c = new EDA.Comentario(jtf_comentarios.getText());
-        int carteira = Integer.parseInt(jtf_carteira.getText());
+        Comentario c = new Comentario(jta_Comentario.getText());
+        String carteira = jtf_carteira.getText();
         if(NegocioFacade.checaCadastro(nome, "0000000", cpf, telefone, email)){
-            EDA.Vendedor v = new EDA.Vendedor(nome, cpf, carteira, email, endereco, c, telefone);
+            Vendedor v = new Vendedor(nome, cpf, carteira, email, endereco, c, telefone);
             NegocioFacade.registrarVendedor(v);
         } else {
             JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro!", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btn_cadastrarActionPerformed
+    }//GEN-LAST:event_btn_CadastrarActionPerformed
 
-    private void jtf_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_nomeActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_nomeActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,28 +271,23 @@ public class TelaCadastroVendedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button btn_cadastrar;
-    private java.awt.Button btn_cancelar;
+    private javax.swing.JButton btn_Cadastrar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JTextField jtf_Email13;
-    private javax.swing.JTextField jtf_Email14;
-    private javax.swing.JTextField jtf_Email15;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jta_Comentario;
     private javax.swing.JTextField jtf_carteira;
-    private javax.swing.JTextField jtf_comentarios;
     private javax.swing.JTextField jtf_cpf;
     private javax.swing.JTextField jtf_email;
     private javax.swing.JTextField jtf_endereco;
     private javax.swing.JTextField jtf_nome;
     private javax.swing.JTextField jtf_telefone;
-    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

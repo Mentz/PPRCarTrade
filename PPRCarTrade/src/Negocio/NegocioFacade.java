@@ -112,4 +112,14 @@ public class NegocioFacade {
         return false;
     }
     
+    //Autor: Felipe Weiss
+    public static boolean adicionarComentarioUsuario(UsuDados proprietario, String comentario){
+        if(comentario.length() > 0){
+            registro.adicionarComentarioUsuario(proprietario, comentario);
+        } else {
+            NegocioFacade.getStatus().addErro("Comentario não pode ser vazio!");
+        }
+        return !NegocioFacade.getStatus().fail();
+    }
+    
 }

@@ -32,9 +32,7 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
     
     public TelaBuscarVeiculo() {
         initComponents();
-        
-        jrb_Marca.setSelected(true);
-        
+                
         jlt_Veiculos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         ButtonGroup group = new ButtonGroup();
@@ -156,15 +154,17 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
                             .addComponent(jrb_MenorPreco)
                             .addComponent(jrb_MaiorPreco)
                             .addComponent(jrb_Ano))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45))
+                        .addGap(35, 35, 35)
+                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(176, 176, 176))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,11 +186,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jrb_MaiorPreco))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Confirmar)
                     .addComponent(btn_Cancelar))
-                .addContainerGap())
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,7 +200,15 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         tela.setEnabled(true);
     }//GEN-LAST:event_Fechando
-        
+    
+    private String formatCabecalho(){
+        return String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+    }
+    
+    private String formatSaida(VendaVeiculo a){
+        return String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+    }
+    
     private void jrb_ModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_ModeloActionPerformed
         // TODO add your handling code here:
         DefaultListModel list = new DefaultListModel();
@@ -209,11 +217,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         
         Collections.sort(aux, new ModeloVeiculoComparator());
         
-        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        String cabecalho = formatCabecalho();
         list.addElement(cabecalho);
         
         for(VendaVeiculo a : aux){
-            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+            String res = formatSaida(a);
             list.addElement(res);
         }
         
@@ -234,11 +242,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         
         Collections.sort(aux, new AnoVeiculoComparator());
         
-        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        String cabecalho = formatCabecalho();
         list.addElement(cabecalho);
         
         for(VendaVeiculo a : aux){
-            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+            String res = formatSaida(a);
             list.addElement(res);
         }
         
@@ -253,11 +261,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         
         Collections.sort(aux, new MarcaVeiculoComparator());
         
-        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        String cabecalho = formatCabecalho();
         list.addElement(cabecalho);
         
         for(VendaVeiculo a : aux){
-            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+            String res = formatSaida(a);
             list.addElement(res);
         }
         
@@ -272,11 +280,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         
         Collections.sort(aux, new MenorPrecoVeiculoComparator());
         
-        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        String cabecalho = formatCabecalho();
         list.addElement(cabecalho);
         
         for(VendaVeiculo a : aux){
-            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+            String res = formatSaida(a);
             list.addElement(res);
         }
         
@@ -291,11 +299,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         
         Collections.sort(aux, new MaiorPrecoVeiculoComparator());
         
-        String cabecalho = String.format("%-15s %-15s %-10s %-5s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
+        String cabecalho = formatCabecalho();
         list.addElement(cabecalho);
         
         for(VendaVeiculo a : aux){
-            String res = String.format("%-15s %-15s %-10s %-5s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
+            String res = formatSaida(a);
             list.addElement(res);
         }
         
@@ -304,8 +312,10 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
 
     private void btn_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmarActionPerformed
         // TODO add your handling code here:
-        int index = jlt_Veiculos.getSelectedIndex() - 1;
-        new TelaEspecificacaoVeiculo(this, NegocioFacade.listaVeiculos().get(index)).setVisible(true);
+        if(!jlt_Veiculos.isSelectionEmpty()){
+            int index = jlt_Veiculos.getSelectedIndex() - 1;
+            new TelaEspecificacaoVeiculo(this, NegocioFacade.listaVeiculos().get(index)).setVisible(true);
+        }
     }//GEN-LAST:event_btn_ConfirmarActionPerformed
     
     /**

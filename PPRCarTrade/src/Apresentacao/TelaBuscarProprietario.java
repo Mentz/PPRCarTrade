@@ -5,8 +5,15 @@
  */
 package Apresentacao;
 
+import Apresentacao.Comparadores.CPFComparator;
+import Apresentacao.Comparadores.EmailComparator;
+import Apresentacao.Comparadores.FoneComparator;
+import Apresentacao.Comparadores.ModeloVeiculoComparator;
+import Apresentacao.Comparadores.NomeComparator;
 import Apresentacao.Comparadores.ProprietarioComparador;
+import EDA.UsuDados;
 import EDA.Usuario;
+import EDA.VendaVeiculo;
 import Negocio.NegocioFacade;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,14 +30,18 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     /**
      * Creates new form TelaBuscarProprietario
      */
-    TelaNegocio tela;
+    private TelaNegocio tela;
+    
     public TelaBuscarProprietario() {
-        initComponents();
+        initComponents();        
         
+        jlt_Proprietarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
-        Proprietario.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
-        
+        ButtonGroup group = new ButtonGroup();
+        group.add(nome);
+        group.add(cpf);
+        group.add(email);
+        group.add(fone);
         
     }
 
@@ -63,10 +74,9 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
         cpf = new javax.swing.JRadioButton();
         email = new javax.swing.JRadioButton();
         fone = new javax.swing.JRadioButton();
-        buscar = new javax.swing.JButton();
         bnt_Cancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Proprietario = new javax.swing.JList<>();
+        jlt_Proprietarios = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -82,17 +92,30 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
         jLabel2.setText("Ordenar por:");
 
         nome.setText("Nome");
+        nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeActionPerformed(evt);
+            }
+        });
 
         cpf.setText("CPF");
+        cpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpfActionPerformed(evt);
+            }
+        });
 
         email.setText("Email");
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
 
         fone.setText("Fone");
-
-        buscar.setText("Buscar");
-        buscar.addActionListener(new java.awt.event.ActionListener() {
+        fone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
+                foneActionPerformed(evt);
             }
         });
 
@@ -103,83 +126,61 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(Proprietario);
+        jScrollPane1.setViewportView(jlt_Proprietarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cpf)
-                                .addComponent(nome)
-                                .addComponent(email)
-                                .addComponent(fone)
-                                .addComponent(buscar)))
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(bnt_Cancelar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nome)
+                                    .addComponent(cpf)
+                                    .addComponent(email)
+                                    .addComponent(fone)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(bnt_Cancelar)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(4, 4, 4)
                         .addComponent(nome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cpf)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(email)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fone))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fone)
+                        .addGap(29, 29, 29)
+                        .addComponent(bnt_Cancelar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscar)
-                    .addComponent(bnt_Cancelar))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
    
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
-
-        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
-
-        Collections.sort(aux, new ProprietarioComparador());
-
-        for (Usuario a : aux){
-            String res = String.format("%-10s %-10s %s %-10s %s %-10s",
-                "Nome:", a.getNome(), "CPF: ",a.getCpf(), "Email: ", a.getEmail(),
-                "Endereço: ", a.getEndereco(),"Telefone: ", a.getFone());
-            list.addElement(res);
-        }
-
-        Proprietario.setModel(list);
-    }//GEN-LAST:event_buscarActionPerformed
-
     private void bnt_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_CancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -189,6 +190,86 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
         // TODO add your handling code here:
         tela.setEnabled(true);
     }//GEN-LAST:event_Fechando
+
+    private String formatCabecalho(){
+        return String.format("%-15s %-15s %-15s %s", "Nome", "CPF", "Email", "Telefone");
+    }
+    
+    private String formatSaida(Usuario a){
+        return String.format("%-15s %-15s %-15s %s", a.getNome(), a.getCpf(), a.getEmail(), a.getFone());
+    }
+    
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel list = new DefaultListModel();
+        
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
+        
+        Collections.sort(aux, new NomeComparator());
+        
+        String cabecalho = formatCabecalho();
+        list.addElement(cabecalho);
+        
+        for(Usuario a : aux){
+            String res = formatSaida(a);
+            list.addElement(res);
+        }
+        jlt_Proprietarios.setModel(list);
+    }//GEN-LAST:event_nomeActionPerformed
+
+    private void cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel list = new DefaultListModel();
+        
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
+        
+        Collections.sort(aux, new CPFComparator());
+        
+        String cabecalho = formatCabecalho();
+        list.addElement(cabecalho);
+        
+        for(Usuario a : aux){
+            String res = formatSaida(a);
+            list.addElement(res);
+        }
+        jlt_Proprietarios.setModel(list);
+    }//GEN-LAST:event_cpfActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel list = new DefaultListModel();
+        
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
+        
+        Collections.sort(aux, new EmailComparator());
+        
+        String cabecalho = formatCabecalho();
+        list.addElement(cabecalho);
+        
+        for(Usuario a : aux){
+            String res = formatSaida(a);
+            list.addElement(res);
+        }
+        jlt_Proprietarios.setModel(list);
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void foneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foneActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel list = new DefaultListModel();
+        
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
+        
+        Collections.sort(aux, new FoneComparator());
+        
+        String cabecalho = formatCabecalho();
+        list.addElement(cabecalho);
+        
+        for(Usuario a : aux){
+            String res = formatSaida(a);
+            list.addElement(res);
+        }
+        jlt_Proprietarios.setModel(list);
+    }//GEN-LAST:event_foneActionPerformed
 
      /**
    
@@ -227,9 +308,7 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> Proprietario;
     private javax.swing.JButton bnt_Cancelar;
-    private javax.swing.JButton buscar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -245,6 +324,7 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> jlt_Proprietarios;
     private javax.swing.JRadioButton nome;
     // End of variables declaration//GEN-END:variables
 }

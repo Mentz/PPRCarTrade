@@ -29,13 +29,13 @@ public class DAOMemoria implements DAOFacade {
     protected Adm admin;
     
     private DAOMemoria(){
-        this.admin = new Adm("admin", "admin", "Teste McTestilson", "05050505092", 12, "teste@mctestilsonveiculos.com",
+        this.admin = new Adm("admin", "admin", "Teste McTestilson", "05050505092", "00000000000", "teste@mctestilsonveiculos.com",
                 "R. Cajaé 420, São Paulo SP", new Comentario("Olá"), "011 3434 3434");
         this.status = new Status();
         this.veiculos = new ArrayList<>();
         this.vendaVeiculos = new ArrayList<>();
         this.usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("teste", "teste", "Testano Programsilva", "00000000000", 0, "teste@sex.com", "rua teste, 666", new EDA.Comentario("é só um teste"), "4792230226"));
+        usuarios.add(new Usuario("teste", "teste", "Testano", "00000000000", "00000000000", "teste@sex.com", "rua teste, 666", new EDA.Comentario("é só um teste\n"), "4792230226"));
         this.vendedores = new ArrayList<>();
         
         
@@ -46,7 +46,7 @@ public class DAOMemoria implements DAOFacade {
         Veiculo b3 = new Veiculo(2011, "Exemplo3", "FWZ1013", "Exemplo3", "Vermelho", c);
         Veiculo b4 = new Veiculo(2002, "Exemplo4", "FWA1013", "Exemplo2", "Roxo", c);
         Veiculo b5 = new Veiculo(2011, "Exemplo5", "FWB1013", "Exemplo1", "Dourado", c);
-        UsuDados p1 = new UsuDados("FF", "120", 5, "as", "as", c, "asas");
+        UsuDados p1 = new UsuDados("Testano", "00000000000", "00000000000", "teste@sex.com", "rua teste, 666", new EDA.Comentario("é só um teste\n"), "4792230226");
         vendaVeiculos.add(new VendaVeiculo(b1, p1, 25555.33, c));
         vendaVeiculos.add(new VendaVeiculo(b2, p1, 10000.33, c));
         vendaVeiculos.add(new VendaVeiculo(b3, p1, 5626.33, c));
@@ -234,5 +234,19 @@ public class DAOMemoria implements DAOFacade {
     @Override
     public ArrayList<Vendedor> listaVendedores() {
         return this.vendedores;
+    }
+    
+    //Autor: Felipe Weiss
+    @Override
+    public void adicionarComentarioUsuario(UsuDados proprietario, String comentario){
+        int idx = 0;
+        for(Usuario a : usuarios){
+            if(a.getCpf().equals(proprietario.getCpf())){
+                usuarios.get(idx).getComentUsu().setComment(comentario);
+                break;
+            }
+            idx++;
+        }
+        System.out.println(usuarios.get(idx).getComentUsu().getComment());
     }
 }
