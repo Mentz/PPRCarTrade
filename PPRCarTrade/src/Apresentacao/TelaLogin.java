@@ -154,6 +154,7 @@ public class TelaLogin extends javax.swing.JFrame {
         String login = jtf_Login.getText();
         String senha = new String(jpf_Password.getPassword());
         if(NegocioFacade.checaLoginUsuario(login, senha)){
+            NegocioFacade.setUsuarioLogado(login, senha);
             new TelaNegocio(this).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);

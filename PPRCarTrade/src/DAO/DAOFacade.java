@@ -29,4 +29,6 @@ public interface DAOFacade {
     public boolean checaVendedor(Vendedor vendedor);
     public void adicionarComentarioUsuario(UsuDados proprietario, String comentario);
     public void adicionarComentarioVeiculo(VendaVeiculo veiculo, String comentario);
+    public void setUsuarioLogado(String username, String password);
+    public Usuario getUsuarioLogado();
 }

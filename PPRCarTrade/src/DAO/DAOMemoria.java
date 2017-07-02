@@ -26,6 +26,7 @@ public class DAOMemoria implements DAOFacade {
     private ArrayList<VendaVeiculo> vendaVeiculos;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Vendedor> vendedores;
+    private Usuario usuarioLogado;
     protected Adm admin;
     
     private DAOMemoria(){
@@ -61,6 +62,21 @@ public class DAOMemoria implements DAOFacade {
     // Autor: Mentz
     public boolean validarAdm(Adm adm){
         return adm == admin;
+    }
+    
+    @Override
+    public void setUsuarioLogado(String username, String password){
+        for(Usuario a : usuarios){
+            if(a.getLogin().equals(username) && a.getSenha().equals(password)){
+                usuarioLogado = a;
+                break;
+            }
+        }
+    }
+    
+    @Override
+    public Usuario getUsuarioLogado(){
+        return usuarioLogado;
     }
     
     @Override

@@ -82,6 +82,7 @@ public class TelaNegocio extends javax.swing.JFrame {
         });
 
         btn_CadastrarVendedor.setText("Cadastrar Vendedor");
+        btn_CadastrarVendedor.setEnabled(false);
         btn_CadastrarVendedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_CadastrarVendedorActionPerformed(evt);
