@@ -54,6 +54,11 @@ public class NegocioFacade {
     {
         return registro.listaVeiculos();
     }
+    // Autor: Felipe
+    public static ArrayList<Usuario> listaUsuarios()
+    {
+        return registro.listaUsuarios();
+    }
     
     // Autor: Mentz
     public static boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email)

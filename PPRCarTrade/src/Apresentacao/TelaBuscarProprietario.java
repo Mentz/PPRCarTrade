@@ -5,8 +5,9 @@
  */
 package Apresentacao;
 
-import Apresentacao.Comparadores.NomeComparator;
+import Apresentacao.Comparadores.ProprietarioComparador;
 import EDA.UsuDados;
+import EDA.Usuario;
 import Negocio.NegocioFacade;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -151,10 +152,10 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultListModel list = new DefaultListModel();
         
-        ArrayList<UsuDados> aux = NegocioFacade.listaUsuarios();
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
         
         //Ainda falta o comparador
-        Collections.sort(aux, new NomeComparator());
+        Collections.sort(aux, new ProprietarioComparador());
         
         for(UsuDados a : aux){
             String res = String.format("%-10s %-10s %s %-10s %s %-10s", "Nome:", a.getNome(), "CPF: ",a.getCpf(), "Email: ", a.getEmail(), "Endereço: ", a.getEndereco(),"Telefone: ", a.getFone());
