@@ -122,6 +122,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jlt_Veiculos);
 
         btn_Confirmar.setText("Confirmar");
+        btn_Confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ConfirmarActionPerformed(evt);
+            }
+        });
 
         btn_Cancelar.setText("Cancelar");
         btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +200,7 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         tela.setEnabled(true);
     }//GEN-LAST:event_Fechando
-
+        
     private void jrb_ModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_ModeloActionPerformed
         // TODO add your handling code here:
         DefaultListModel list = new DefaultListModel();
@@ -296,6 +301,12 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         
         jlt_Veiculos.setModel(list);
     }//GEN-LAST:event_jrb_MaiorPrecoActionPerformed
+
+    private void btn_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmarActionPerformed
+        // TODO add your handling code here:
+        int index = jlt_Veiculos.getSelectedIndex() - 1;
+        new TelaEspecificacaoVeiculo(this, NegocioFacade.listaVeiculos().get(index)).setVisible(true);
+    }//GEN-LAST:event_btn_ConfirmarActionPerformed
     
     /**
      * @param args the command line arguments
