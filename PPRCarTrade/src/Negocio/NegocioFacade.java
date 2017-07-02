@@ -91,4 +91,9 @@ public class NegocioFacade {
             return true;
     }
     
+    //Autor: Arthur
+    public static void registrarVenda(VendaVeiculo venda){
+        registro.registrarVenda(venda);
+    }
+    
 }

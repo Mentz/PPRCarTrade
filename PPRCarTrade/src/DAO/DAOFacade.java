@@ -23,4 +23,5 @@ public interface DAOFacade {
     public boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email);
     public boolean checaLogin(String login, String senha);
     public Status getStatus();
+    public void registrarVenda(VendaVeiculo venda);
 }

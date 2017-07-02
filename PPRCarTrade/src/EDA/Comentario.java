@@ -8,6 +8,7 @@ import java.util.*;
 public class Comentario {
     private String comment;
     
+    /*-----------------------------------*/
     // Autor: Mentz
     // Construtor sem argumentos
     public Comentario()
@@ -20,9 +21,8 @@ public class Comentario {
     public Comentario(String comentario)
     {
         this.comment = comentario;
-    }
+    }    
     
-    /*-----------------------------------*/
     public String getComment(){
         return comment;
     }

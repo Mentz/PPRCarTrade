@@ -196,4 +196,13 @@ public class DAOMemoria implements DAOFacade {
     public void registrarVeiculo(Veiculo veiculo) {
         veiculos.add(veiculo);
     }
+    
+    
+    
+    // Author: Arthur
+    
+    @Override
+    public void registrarVenda(VendaVeiculo venda){
+        vendaVeiculos.add(venda);
+    }
 }

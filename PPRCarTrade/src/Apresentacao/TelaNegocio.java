@@ -52,6 +52,11 @@ public class TelaNegocio extends javax.swing.JFrame {
         jLabel1.setText("Menu de Negócios");
 
         btn_VenderVeiculo.setText("Vender veículo");
+        btn_VenderVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VenderVeiculoActionPerformed(evt);
+            }
+        });
 
         btn_BuscarVeiculo.setText("Buscar veículo");
         btn_BuscarVeiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +123,17 @@ public class TelaNegocio extends javax.swing.JFrame {
         this.setEnabled(false);
         new TelaBuscarVeiculo(this).setVisible(true);
     }//GEN-LAST:event_btn_BuscarVeiculoActionPerformed
+
+    
+    /**
+     * @author Arthur
+     */
+    
+    private void btn_VenderVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VenderVeiculoActionPerformed
+        // TODO add your handling code here:
+        this.setEnabled(false);
+        new TelaVenda(this).setVisible(true);
+    }//GEN-LAST:event_btn_VenderVeiculoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_BuscarVeiculo;
