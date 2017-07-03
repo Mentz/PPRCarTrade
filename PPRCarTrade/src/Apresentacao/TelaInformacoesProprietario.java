@@ -26,7 +26,6 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
     public TelaInformacoesProprietario() {
         initComponents();
         
-        this.setSize(this.getWidth(), this.getHeight() - (jta_Comentario.getHeight() + 45));
         this.setResizable(false);
     }
     
@@ -69,9 +68,6 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
         jtf_Telefone = new javax.swing.JTextField();
         btn_Voltar = new javax.swing.JButton();
         btn_Comentar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jta_Comentario = new javax.swing.JTextArea();
         btn_Informacoes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -122,15 +118,6 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
-        jLabel8.setText("Comentário:");
-
-        jta_Comentario.setColumns(20);
-        jta_Comentario.setLineWrap(true);
-        jta_Comentario.setRows(5);
-        jta_Comentario.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jta_Comentario);
-
         btn_Informacoes.setText("Comentários sobre o usuário");
         btn_Informacoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,27 +137,21 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
                         .addGap(0, 146, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtf_Nome)
-                                    .addComponent(jtf_CPF)
-                                    .addComponent(jtf_cartMoto)
-                                    .addComponent(jtf_Email)
-                                    .addComponent(jtf_Endereco)
-                                    .addComponent(jtf_Telefone)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1)))))
+                            .addComponent(jtf_Nome)
+                            .addComponent(jtf_CPF)
+                            .addComponent(jtf_cartMoto)
+                            .addComponent(jtf_Email)
+                            .addComponent(jtf_Endereco)
+                            .addComponent(jtf_Telefone))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -215,13 +196,6 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
                     .addComponent(btn_Informacoes)
                     .addComponent(btn_Comentar)
                     .addComponent(btn_Voltar))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -240,13 +214,10 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
 
     private void btn_ComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ComentarActionPerformed
         // TODO add your handling code here:
-        if(!comentarioJaAberto){
-            comentarioJaAberto = true;
-            this.setSize(this.getWidth(), this.getHeight() + (jta_Comentario.getHeight() + 10));
-        } else {
-            if(NegocioFacade.adicionarComentarioUsuario(proprietario, (jta_Comentario.getText().length() > 0 ? NegocioFacade.getUsuarioLogado().getNome() + "&" : "") + jta_Comentario.getText())){
+        String comment = JOptionPane.showInputDialog(this, "Comentário", "", JOptionPane.INFORMATION_MESSAGE);
+        if(comment != null){
+            if(NegocioFacade.adicionarComentarioUsuario(proprietario, (comment.length() > 0 ? NegocioFacade.getUsuarioLogado().getNome() + "&" : "") + comment)){
                 JOptionPane.showMessageDialog(this, "Comentário adicionado com sucesso!");
-                jta_Comentario.setText("");
             } else {
                 JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
@@ -306,9 +277,6 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jta_Comentario;
     private javax.swing.JTextField jtf_CPF;
     private javax.swing.JTextField jtf_Email;
     private javax.swing.JTextField jtf_Endereco;

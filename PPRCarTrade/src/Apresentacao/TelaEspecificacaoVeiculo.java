@@ -35,7 +35,6 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
         jtf_Ano.setEditable(false);
         jtf_Cor.setEditable(false);
         
-        this.setSize(this.getWidth(), this.getHeight() - jta_Comentario.getHeight() - 50);
         this.setResizable(false);
                 
         
@@ -69,9 +68,6 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         btn_Confirmar = new javax.swing.JButton();
         btn_Cancelar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jta_Comentario = new javax.swing.JTextArea();
         btn_Comentar = new javax.swing.JButton();
         jtf_Marca = new javax.swing.JTextField();
         jtf_Modelo = new javax.swing.JTextField();
@@ -115,14 +111,6 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
                 btn_CancelarActionPerformed(evt);
             }
         });
-
-        jLabel11.setText("Comentário:");
-
-        jta_Comentario.setColumns(20);
-        jta_Comentario.setLineWrap(true);
-        jta_Comentario.setRows(5);
-        jta_Comentario.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jta_Comentario);
 
         btn_Comentar.setText("Comentar");
         btn_Comentar.addActionListener(new java.awt.event.ActionListener() {
@@ -199,33 +187,26 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
                         .addComponent(btn_InformacoesProprietario)
                         .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_Comentar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(jLabel10)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_Comentar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1))))
+                        .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel10)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -266,13 +247,6 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
                     .addComponent(btn_Confirmar)
                     .addComponent(btn_Cancelar)
                     .addComponent(jButton1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel11)))
                 .addContainerGap())
         );
 
@@ -287,14 +261,10 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
 
     private void btn_ComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ComentarActionPerformed
         // TODO add your handling code here:
-        if(!comentarioJaAberto){
-            comentarioJaAberto = true;
-            this.setSize(this.getWidth(), this.getHeight() + jta_Comentario.getHeight() + 10);
-            //jta_Comentario.setVisible(true);
-        } else {
-            if(NegocioFacade.adicionarComentarioVeiculo(veiculo, NegocioFacade.getUsuarioLogado().getNome() + "&" + jta_Comentario.getText())){
+        String comment = JOptionPane.showInputDialog(this, "Comentário", "", JOptionPane.INFORMATION_MESSAGE);
+        if(comment != null){
+            if(NegocioFacade.adicionarComentarioVeiculo(veiculo, (comment.length() > 0 ? NegocioFacade.getUsuarioLogado().getNome() + "&" : "") + comment)){
                 JOptionPane.showMessageDialog(this, "Comentário adicionado com sucesso!");
-                jta_Comentario.setText("");
             } else {
                 JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -370,8 +340,6 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
     private javax.swing.JButton btn_InformacoesProprietario;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlb_Ano;
     private javax.swing.JLabel jlb_Cor;
     private javax.swing.JLabel jlb_Email;
@@ -380,7 +348,6 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jlb_Preco;
     private javax.swing.JLabel jlb_Proprietario;
     private javax.swing.JLabel jlb_Telefone;
-    private javax.swing.JTextArea jta_Comentario;
     private javax.swing.JTextField jtf_Ano;
     private javax.swing.JTextField jtf_Cor;
     private javax.swing.JTextField jtf_Email;
