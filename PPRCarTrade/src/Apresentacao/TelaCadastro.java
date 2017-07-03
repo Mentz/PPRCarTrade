@@ -6,6 +6,7 @@
 package Apresentacao;
 
 import DAO.DAOFacade;
+import EDA.Comentario;
 import Negocio.NegocioFacade;
 import javax.swing.JOptionPane;
 
@@ -238,7 +239,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         String endereco = jtf_Endereco.getText();
         String cartMotorista = jtf_CartMotorista.getText();
         if(NegocioFacade.checaCadastro(login, senha, nome, rg, cpf, endereco, cartMotorista, telefone, email)){
-            NegocioFacade.registrarUsuario(new EDA.Usuario(login, senha, nome, cpf, rg, email, "Rua abobrinha", new EDA.Comentario(""), telefone));
+            NegocioFacade.registrarUsuario(new EDA.Usuario(login, senha, nome, rg, cpf, endereco, cartMotorista, telefone, email, new Comentario("")));
             JOptionPane.showMessageDialog(this, "Cadastro efetuado com sucesso!", "Cadastrado!", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {

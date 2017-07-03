@@ -1,5 +1,7 @@
 package EDA;
 
+import java.util.ArrayList;
+
 /*
  * @author Arthur
  */
@@ -8,7 +10,7 @@ public class VendaVeiculo {
     private Veiculo veiculo;
     private UsuDados proprietario;
     private double preco;
-    private Comentario comentario;
+    private ArrayList<Comentario> comentarios;
     
     /*-----------------------------------*/
     
@@ -16,7 +18,8 @@ public class VendaVeiculo {
         this.veiculo = veiculo;
         this.proprietario = proprietario;
         this.preco = preco;
-        this.comentario = c;
+        comentarios = new ArrayList<>();
+        this.comentarios.add(c);
     }
     
     public Veiculo getVeiculo(){
@@ -40,11 +43,11 @@ public class VendaVeiculo {
         this.preco = preco;
     }
     
-    public Comentario getComentarios(){
-        return comentario;
+    public ArrayList<Comentario> getComentarios(){
+        return comentarios;
     }
     public void setComentarios(Comentario comentario){        
-        this.comentario.setComment(comentario.getComment());
+        this.comentarios.add(comentario);
     }
     
     /*-----------------------------------*/

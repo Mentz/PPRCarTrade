@@ -8,8 +8,8 @@ public class Adm extends UsuDados{
     private String senha;
     
     // Construtor por parâmetros
-    public Adm(String login, String senha, String nome, String cpf, String carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone) {
-        super(nome, cpf, carteira_motorista, e_mail, endereco, coment_usu, fone);
+    public Adm(String login, String senha, String nome, String cpf, String rg, String endereco, String carteira_motorista, String fone, String e_mail) {
+        super(nome, cpf, rg, endereco, carteira_motorista, fone, e_mail);
         this.login = login;
         this.senha = senha;
     }

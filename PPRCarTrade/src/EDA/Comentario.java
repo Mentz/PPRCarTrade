@@ -9,19 +9,19 @@ public class Comentario {
     private String comment;
     
     /*-----------------------------------*/
-    // Autor: Mentz
+    // Autor: Mentz e Felipe Weiss
     // Construtor sem argumentos
     public Comentario()
     {
-        this.comment = new String();
+        this.comment = "";
     }
     
-    // Autor: Mentz
+    // Autor: Mentz e Felipe Weiss
     // Construtor com argumento Comentário
     public Comentario(String comentario)
     {
         if(comentario != ""){
-            this.comment = comentario + "\n";
+            this.comment = comentario;
         } else {
             this.comment = "";
         }
@@ -31,7 +31,7 @@ public class Comentario {
         return comment;
     }
     public void setComment(String comment){
-        this.comment += comment + "\n";
+        this.comment = comment;
     }
     /*-----------------------------------*/
     

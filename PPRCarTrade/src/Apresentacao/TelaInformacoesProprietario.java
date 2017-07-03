@@ -26,7 +26,7 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
     public TelaInformacoesProprietario() {
         initComponents();
         
-        this.setSize(this.getWidth(), this.getHeight() - (jta_Comentario.getHeight() + 35));
+        this.setSize(this.getWidth(), this.getHeight() - (jta_Comentario.getHeight() + 45));
         
     }
     
@@ -244,8 +244,9 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
             comentarioJaAberto = true;
             this.setSize(this.getWidth(), this.getHeight() + (jta_Comentario.getHeight() + 10));
         } else {
-            if(NegocioFacade.adicionarComentarioUsuario(proprietario, NegocioFacade.getUsuarioLogado().getNome() + ": " + jta_Comentario.getText())){
+            if(NegocioFacade.adicionarComentarioUsuario(proprietario, (jta_Comentario.getText().length() > 0 ? NegocioFacade.getUsuarioLogado().getNome() + "&" : "") + jta_Comentario.getText())){
                 JOptionPane.showMessageDialog(this, "Comentário adicionado com sucesso!");
+                jta_Comentario.setText("");
             } else {
                 JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
@@ -254,11 +255,8 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
 
     private void btn_InformacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InformacoesActionPerformed
         // TODO add your handling code here:
-        String aux = NegocioFacade.getComentariosUsuario(proprietario);
-        if(aux == ""){
-            aux = "Nenhum comentário a respeito deste usuário";
-        }
-        JOptionPane.showMessageDialog(this, aux, "Informações sobre o usuário", JOptionPane.INFORMATION_MESSAGE);
+        this.setEnabled(false);
+        new TelaVisualizarComentariosUsuario(this, proprietario).setVisible(true);
     }//GEN-LAST:event_btn_InformacoesActionPerformed
 
     /**

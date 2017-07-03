@@ -237,7 +237,7 @@ public class TelaVenda extends javax.swing.JFrame {
         Comentario commentCar = new Comentario(comment);
         Comentario additionals = new Comentario(adicionais1);
         Comentario c = new Comentario();
-        c.setComment("oi");
+        c.setComment("");
         Usuario usuario = NegocioFacade.getUsuarioLogado();
         
         Veiculo vehicle = new Veiculo(year, model, licensePlate, brand, color, commentCar);

@@ -35,7 +35,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btn_Editar" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btn_Visualizar" alignment="0" pref="166" max="32767" attributes="0"/>
+                  <Component id="btn_Visualizar" alignment="0" max="32767" attributes="0"/>
                   <Component id="btn_Cancelar" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -89,10 +89,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar venda"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EditarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Visualizar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Visualizar detalhes"/>
+        <Property name="text" type="java.lang.String" value="Visualizar coment&#xe1;rios"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_VisualizarActionPerformed"/>

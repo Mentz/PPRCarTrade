@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author weiss
  */
-public class TelaEditarVendas extends javax.swing.JFrame {
+public class TelaUsuarioVendas extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaVendasEmAberto
@@ -28,9 +28,19 @@ public class TelaEditarVendas extends javax.swing.JFrame {
     private TelaNegocio tela;
     private ArrayList<VendaVeiculo> meusVeiculos;
     
-    public TelaEditarVendas() {
-        initComponents();
+    public TelaUsuarioVendas() {
+        initComponents();   
         
+        atualizaTela();
+        
+    }
+        
+    public TelaUsuarioVendas(TelaNegocio tela){
+        this();
+        this.tela = tela;
+    }
+    
+    public void atualizaTela(){
         meusVeiculos = new ArrayList<>();
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -39,6 +49,7 @@ public class TelaEditarVendas extends javax.swing.JFrame {
         
         jtb_Veiculos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         DefaultTableModel model = (DefaultTableModel)jtb_Veiculos.getModel();
+        model.setRowCount(0);
         ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
         Usuario logado = NegocioFacade.getUsuarioLogado();
         for(VendaVeiculo a : aux){
@@ -49,14 +60,8 @@ public class TelaEditarVendas extends javax.swing.JFrame {
             }
         }
         jtb_Veiculos.setModel(model);
-        
     }
     
-    public TelaEditarVendas(TelaNegocio tela){
-        this();
-        this.tela = tela;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,8 +90,13 @@ public class TelaEditarVendas extends javax.swing.JFrame {
         jLabel1.setText("Editar vendas");
 
         btn_Editar.setText("Editar venda");
+        btn_Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EditarActionPerformed(evt);
+            }
+        });
 
-        btn_Visualizar.setText("Visualizar detalhes");
+        btn_Visualizar.setText("Visualizar comentários");
         btn_Visualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_VisualizarActionPerformed(evt);
@@ -137,7 +147,7 @@ public class TelaEditarVendas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Visualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(btn_Visualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_Cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,6 +194,20 @@ public class TelaEditarVendas extends javax.swing.JFrame {
 
     private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
         // TODO add your handling code here:
+        int index = jtb_Veiculos.getSelectedRow();
+        if(index > -1){
+            int res = JOptionPane.showConfirmDialog(this, "Você realmente deseja remover este veículo?");
+            if(res == JOptionPane.YES_OPTION){
+                if(NegocioFacade.removeVeiculo(meusVeiculos.get(index))){
+                    JOptionPane.showMessageDialog(this, "Veiculo removido com sucesso!");
+                    atualizaTela();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ocorreu algum erro ao remover o veiculo!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }            
+        } else {
+            JOptionPane.showMessageDialog(this, "Você precisa selecionar um veiculo!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn_CancelarActionPerformed
 
     private void btn_VisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VisualizarActionPerformed
@@ -191,11 +215,22 @@ public class TelaEditarVendas extends javax.swing.JFrame {
         int index = jtb_Veiculos.getSelectedRow();
         if(index > -1){
             this.setEnabled(false);
-            new TelaVisualizarVenda(this, meusVeiculos.get(index)).setVisible(true);
+            new TelaVisualizarComentarios(this, meusVeiculos.get(index)).setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Você precisa selecionar um carro!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Você precisa selecionar um veículo!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_VisualizarActionPerformed
+
+    private void btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarActionPerformed
+        // TODO add your handling code here:
+        int index = jtb_Veiculos.getSelectedRow();
+        if(index > -1){
+            this.setEnabled(false);
+            new TelaEditarVenda(this, meusVeiculos.get(index)).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Você precisa selecionar um veículo!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_EditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,21 +249,23 @@ public class TelaEditarVendas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuarioVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuarioVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuarioVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuarioVendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaEditarVendas().setVisible(true);
+                new TelaUsuarioVendas().setVisible(true);
             }
         });
     }

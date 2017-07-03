@@ -22,24 +22,24 @@ import java.util.ArrayList;
 public class DAOMemoria implements DAOFacade {
     private Status status;
     private static DAOMemoria instance;
-    private ArrayList<Veiculo> veiculos;
+    //private ArrayList<Veiculo> veiculos;
     private ArrayList<VendaVeiculo> vendaVeiculos;
     private ArrayList<Usuario> usuarios;
-    private ArrayList<Vendedor> vendedores;
+    //private ArrayList<Vendedor> vendedores;
     private Usuario usuarioLogado;
     protected Adm admin;
     
     private DAOMemoria(){
-        this.admin = new Adm("admin", "admin", "Teste McTestilson", "05050505092", "00000000000", "teste@mctestilsonveiculos.com",
-                "R. Cajaé 420, São Paulo SP", new Comentario("Olá"), "011 3434 3434");
+        this.admin = new Adm("admin", "admin", "Teste McTestilson", "05050505092", "3698521", "R. Cajaé 420, São Paulo SP", "00000000000", "011 3434 3434", "teste@mctestilsonveiculos.com");
         this.status = new Status();
-        this.veiculos = new ArrayList<>();
+        //this.veiculos = new ArrayList<>();
         this.vendaVeiculos = new ArrayList<>();
         this.usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("teste", "teste", "Testano", "123456789", "6549813616", "teste@sex.com", "rua teste, 666", new EDA.Comentario(""), "4792230226"));
-        usuarios.add(new Usuario("usu1", "usu1", "Testador", "987654321", "8465923161", "usu1@sedex.com", "Rua: Carlitos, 333", new EDA.Comentario(""), "4712345678"));
-        usuarios.add(new Usuario("usu2", "usu2", "Testadora", "1122334455", "316292495", "usu2@sedex.com", "Rua: Carlitas, 123", new EDA.Comentario(""), "4787654321"));
-        this.vendedores = new ArrayList<>();
+        usuarios.add(new Usuario("teste", "teste", "Testano", "123456789", "6549813616", "rua teste, 666", "654321988", "4792230226", "teste@sex.com", new EDA.Comentario("")));
+        usuarios.add(new Usuario("one", "one", "Leona", "545555555", "11111111111", "rua Dementador, 222", "999999999", "4788757046", "leona@sex.com", new EDA.Comentario("")));
+        usuarios.add(new Usuario("two", "two", "Alistar", "66666666", "22222222222", "rua Cordeiro, 333", "777777777", "4799857540", "alistar@sex.com", new EDA.Comentario("")));
+        
+        //this.vendedores = new ArrayList<>();
         
         
         Comentario c = new Comentario();
@@ -49,9 +49,9 @@ public class DAOMemoria implements DAOFacade {
         Veiculo b3 = new Veiculo(1930, "Carroça", "FWZ1013", "Mentz", "Vermelho", c);
         Veiculo b4 = new Veiculo(1990, "Quase carro", "FWA1013", "Leo", "Roxo", c);
         Veiculo b5 = new Veiculo(2017, "MotoCarExpress", "FWB1013", "Weiss", "Dourado", c);
-        UsuDados p1 = new UsuDados("Testano", "123456789", "6549813616", "teste@sex.com", "rua teste, 666", new EDA.Comentario(""), "4792230226");
-        UsuDados p2 = new UsuDados("Testador", "987654321", "8465923161", "usu1@sedex.com", "Rua: Carlitos, 333", new EDA.Comentario(), "4712345678");
-        UsuDados p3 = new UsuDados("Testadora", "1122334455", "316292495", "usu2@sedex.com", "Rua: Carlitas, 123", new EDA.Comentario(), "4787654321");
+        UsuDados p1 = new UsuDados("Testano", "123456789", "6549813616", "rua teste, 666", "654321988", "4792230226", "teste@sex.com");
+        UsuDados p2 = new UsuDados("Leona", "545555555", "11111111111", "rua Dementador, 222", "999999999", "4788757046", "leona@sex.com");
+        UsuDados p3 = new UsuDados("Alistar", "66666666", "22222222222", "rua Cordeiro, 333", "777777777", "4799857540", "alistar@sex.com");
         vendaVeiculos.add(new VendaVeiculo(b1, p2, 30000.00, c));
         vendaVeiculos.add(new VendaVeiculo(b2, p3, 20250.50, c));
         vendaVeiculos.add(new VendaVeiculo(b3, p3, 2785.18, c));
@@ -87,25 +87,25 @@ public class DAOMemoria implements DAOFacade {
     }
     
     
-    @Override
+    /*@Override
     public void registrarVendedor(Vendedor vendedor){
-        vendedores.add(vendedor);
-    }
+        //vendedores.add(vendedor);
+    }*/
 
-    @Override
-    public void adicionarVeiculoVendedor(Vendedor vendedor, Veiculo veiculo){
+    //@Override
+    /*public void adicionarVeiculoVendedor(Vendedor vendedor, Veiculo veiculo){
         for(int i = 0; i < vendedores.size(); i++){
             if(vendedores.get(i).equals(vendedor)){
                 vendedores.get(i).cadastrarVeiculo(veiculo);
                 break;
             }
         }
-    }
+    }*/
             
-    public void registrarVeiculo(Usuario usuario, Veiculo veiculo)
+    /*public void registrarVeiculo(Usuario usuario, Veiculo veiculo)
     {
         veiculos.add(veiculo);
-    }
+    }*/
     
     // Autor: Mentz
     //@Override
@@ -116,7 +116,7 @@ public class DAOMemoria implements DAOFacade {
     }
     
     // Autor: Mentz
-    public boolean alterarRegistro(Veiculo veiculo1, Veiculo veiculo2)
+    /*public boolean alterarRegistro(Veiculo veiculo1, Veiculo veiculo2)
     {
         for(int i = 0; i < veiculos.size(); i++){
             if(veiculos.get(i) == veiculo1){
@@ -126,10 +126,10 @@ public class DAOMemoria implements DAOFacade {
         }
         
         return false;
-    }
+    }*/
     
     // Autor: Mentz
-    public boolean excluirRegistro(Veiculo veiculo)
+    /*public boolean excluirRegistro(Veiculo veiculo)
     {
         for(int i = 0; i < veiculos.size(); i++){
             if(veiculos.get(i) == veiculo){
@@ -139,7 +139,7 @@ public class DAOMemoria implements DAOFacade {
         }
         
         return false;
-    }
+    }*/
 
     // Autor: Mentz
     @Override
@@ -153,7 +153,20 @@ public class DAOMemoria implements DAOFacade {
     {
         return usuarios;
     }
-
+    
+    //Autor: Felipe Weiss
+    @Override
+    public void alterarRegistro(VendaVeiculo veiculo, VendaVeiculo newVeiculo){
+        int idx = 0;
+        for(VendaVeiculo v : vendaVeiculos){
+            if(v == veiculo){
+                vendaVeiculos.set(idx, newVeiculo);
+                break;
+            }
+            idx++;
+        }        
+    }
+    
     public Object Comentario() {
         throw new UnsupportedOperationException("Not supported yet.");
         //To change body of generated methods, choose Tools | Templates.
@@ -167,8 +180,8 @@ public class DAOMemoria implements DAOFacade {
     }
     
     @Override
-    public void cadastrarUsuario(String login, String senha, String nome, String rg, String cpf, String cartMotorista, String endereco, String telefone, String email){
-        usuarios.add(new Usuario(login, senha, cpf, rg, cartMotorista, email, endereco, new Comentario(""), telefone));
+    public void cadastrarUsuario(String login, String senha, String nome, String rg, String cpf, String cartMotorista, String endereco, String telefone, String email, Comentario comentario){
+        usuarios.add(new Usuario(login, senha, nome, rg, cpf, cartMotorista, endereco, telefone, email, comentario));
     }
     
     @Override
@@ -176,10 +189,10 @@ public class DAOMemoria implements DAOFacade {
         return status;
     }
 
-    @Override
+    /*@Override
     public void registrarVeiculo(Veiculo veiculo) {
         veiculos.add(veiculo);
-    }  
+    }*/ 
     
     // Author: Arthur
     
@@ -188,10 +201,10 @@ public class DAOMemoria implements DAOFacade {
         vendaVeiculos.add(venda);
     }    
     
-    @Override
+    /*@Override
     public ArrayList<Vendedor> listaVendedores() {
         return this.vendedores;
-    }
+    }*/
     
     //Autor: Felipe Weiss
     @Override
@@ -199,7 +212,7 @@ public class DAOMemoria implements DAOFacade {
         int idx = 0;
         for(Usuario a : usuarios){
             if(a.getCpf().equals(proprietario.getCpf())){
-                usuarios.get(idx).getComentUsu().setComment(comentario);
+                usuarios.get(idx).setComentUsu(new Comentario(comentario));
                 break;
             }
             idx++;
@@ -210,5 +223,10 @@ public class DAOMemoria implements DAOFacade {
     public void adicionarComentarioVeiculo(VendaVeiculo veiculo, String comentario){
         int idx = vendaVeiculos.indexOf(veiculo);
         vendaVeiculos.get(idx).setComentarios(new Comentario(comentario));
+    }
+    
+    @Override
+    public void removeVeiculo(VendaVeiculo veiculo){
+        vendaVeiculos.remove(veiculo);
     }
 }

@@ -170,7 +170,7 @@ public class TelaNegocio extends javax.swing.JFrame {
     private void btn_EditarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarVendasActionPerformed
         // TODO add your handling code here:
         this.setEnabled(false);
-        new TelaEditarVendas(this).setVisible(true);
+        new TelaUsuarioVendas(this).setVisible(true);
     }//GEN-LAST:event_btn_EditarVendasActionPerformed
 
 

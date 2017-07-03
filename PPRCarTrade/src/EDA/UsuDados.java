@@ -1,5 +1,7 @@
 package EDA;
 
+import java.util.ArrayList;
+
 /*
  * @author Arthur
  */
@@ -7,27 +9,37 @@ package EDA;
 public class UsuDados {
     private String nome;
     private String cpf;
+    private String rg;
     private String carteira_motorista;
     private String e_mail;
     private String endereco;
-    private Comentario coment_usu;
+    private ArrayList<Comentario> coment_usu;
     private String fone;
     
     
     /*-----------------------------------*/
-    public UsuDados(String nome, String cpf, String carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone){
+    public UsuDados(String nome, String cpf, String rg, String endereco, String carteira_motorista, String fone, String e_mail){
         this.nome = nome;
         this.cpf = cpf;
+        this.rg = rg;
         this.carteira_motorista = carteira_motorista;
         this.e_mail = e_mail;
         this.endereco = endereco;
-        this.coment_usu = coment_usu;
+        this.coment_usu = new ArrayList<>();
         this.fone = fone;
     }
     
     public String getNome(){
         return nome;
     }
+    
+    public String getRg(){
+        return rg;
+    }
+    public void setRg(String rg){
+        this.rg = rg;
+    }
+    
     public void setNome(String nome){
         this.nome = nome;
     }
@@ -67,11 +79,11 @@ public class UsuDados {
         this.fone = fone;
     }
     
-    public Comentario getComentUsu(){        
+    public ArrayList<Comentario> getComentUsu(){        
         return coment_usu;
     }
     public void setComentUsu(Comentario coment_usu){
-        this.coment_usu = coment_usu;
+        this.coment_usu.add(coment_usu);
     }
     /*-----------------------------------*/
 }

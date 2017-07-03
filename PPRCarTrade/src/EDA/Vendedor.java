@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Vendedor extends UsuDados{
     private ArrayList<Veiculo> veiculos;
     public Vendedor(String nome, String cpf, String carteira_motorista, String e_mail, String endereco, Comentario coment_usu, String fone) {
-        super(nome, cpf, carteira_motorista, e_mail, endereco, coment_usu, fone);
+        super(nome, cpf, "654987321", endereco, carteira_motorista, fone, e_mail);
     }
     
     public void cadastrarVeiculo(Veiculo veiculo){

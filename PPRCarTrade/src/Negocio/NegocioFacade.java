@@ -36,16 +36,16 @@ public class NegocioFacade {
     }
     
     // Autor: Mentz
-   public static void registrarVeiculo(Veiculo veiculo)
+    /*public static void registrarVeiculo(Veiculo veiculo)
     {
         registro.registrarVeiculo(veiculo);
-    }
+    }*/
     
     // Autor: Mentz
-   public static void registrarVendedor(Vendedor vendedor)
+    /*public static void registrarVendedor(Vendedor vendedor)
     {
         registro.registrarVendedor(vendedor);
-    }
+    }*/
       
     
     // Autor: Mentz
@@ -59,7 +59,22 @@ public class NegocioFacade {
         return registro.listaUsuarios();
     }
     
-    public static boolean checaVendedor(Vendedor vendedor){
+    //Autor: Felipe Weiss
+    public static boolean alterarRegistro(VendaVeiculo veiculo, VendaVeiculo newVeiculo){
+        if(newVeiculo.getVeiculo().getAno() < 1900){
+            getStatus().addErro("Ano não pode ser tão baixo!");
+        }
+        if(newVeiculo.getPreco() < 0){
+            getStatus().addErro("Valor de venda não pode ser negativo!");
+        }
+        if(!getStatus().fail()){
+             registro.alterarRegistro(veiculo, newVeiculo);
+             return true;
+        }
+        return false;
+    }
+    
+    /*public static boolean checaVendedor(Vendedor vendedor){
         for(Vendedor vnd : registro.listaVendedores()){
             if(vendedor.equals(vnd)){
                 return true;
@@ -68,9 +83,9 @@ public class NegocioFacade {
         
         registro.getStatus().addErro("Vendedor não encontrado");
         return false;
-    }
+    }*/
     
-    // Autor: Mentz
+    // Autor: Mentz             login, senha, nome, rg, cpf, endereco, cartMotorista, telefone, email, new Comentario("")
     public static boolean checaCadastro(String login, String senha, String nome, String rg, String cpf, String endereco, String cartMotorista, String telefone, String email)
     {   
         if(login.length() <= 6){
@@ -117,7 +132,7 @@ public class NegocioFacade {
         }
         
         if(!registro.getStatus().fail()){
-            registro.cadastrarUsuario(login, senha, nome, rg, cpf, cartMotorista, endereco, telefone, email);
+            registro.cadastrarUsuario(login, senha, nome, rg, cpf, cartMotorista, endereco, telefone, email, new Comentario(""));
             return true;
         }
         return false;        
@@ -160,13 +175,13 @@ public class NegocioFacade {
         return false;
     }
     
-    public static boolean adicionarVeiculoVendedor(Vendedor vendedor, Veiculo veiculo){
+    /*public static boolean adicionarVeiculoVendedor(Vendedor vendedor, Veiculo veiculo){
         if(NegocioFacade.checaVendedor(vendedor)){
             registro.adicionarVeiculoVendedor(vendedor, veiculo);
             return true;
         }
         return false;
-    }
+    }*/
     
     public static void setUsuarioLogado(String username, String password){
         registro.setUsuarioLogado(username, password);
@@ -210,16 +225,27 @@ public class NegocioFacade {
         return !getStatus().fail();
     }
     
-    public static String getComentariosUsuario(UsuDados usuario){
+    public static boolean removeVeiculo(VendaVeiculo veiculo){
+        for(VendaVeiculo v : registro.listaVeiculos()){
+            if(v.getVeiculo() == veiculo.getVeiculo()){
+                registro.removeVeiculo(veiculo);
+                return true;
+            }
+        }
+        getStatus().addErro("Erro ao buscar carro!");
+        return false;
+    }
+    
+    public static ArrayList<Comentario> getComentariosUsuario(UsuDados usuario){
         ArrayList<Usuario> aux = registro.listaUsuarios();
         int idx = 0;
         for(Usuario a : aux){
             if(a.getCpf().equals(usuario.getCpf())){
-                return aux.get(idx).getComentUsu().getComment();
+                return aux.get(idx).getComentUsu();
             }
             idx++;
         }
-        return "";
+        return new ArrayList<Comentario>();
     }
     
 }
