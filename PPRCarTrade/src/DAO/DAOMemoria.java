@@ -36,9 +36,9 @@ public class DAOMemoria implements DAOFacade {
         this.veiculos = new ArrayList<>();
         this.vendaVeiculos = new ArrayList<>();
         this.usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("teste", "teste", "Testano", "00000000000", "00000000000", "teste@sex.com", "rua teste, 666", new EDA.Comentario(""), "4792230226"));
-        usuarios.add(new Usuario("usu1", "usu1", "Testador", "00000000000", "00000000000", "usu1@sedex.com", "Rua: Carlitos, 333", new EDA.Comentario(""), "4712345678"));
-        usuarios.add(new Usuario("usu2", "usu2", "Testadora", "00000000000", "00000000000", "usu2@sedex.com", "Rua: Carlitas, 123", new EDA.Comentario(""), "4787654321"));
+        usuarios.add(new Usuario("teste", "teste", "Testano", "123456789", "6549813616", "teste@sex.com", "rua teste, 666", new EDA.Comentario(""), "4792230226"));
+        usuarios.add(new Usuario("usu1", "usu1", "Testador", "987654321", "8465923161", "usu1@sedex.com", "Rua: Carlitos, 333", new EDA.Comentario(""), "4712345678"));
+        usuarios.add(new Usuario("usu2", "usu2", "Testadora", "1122334455", "316292495", "usu2@sedex.com", "Rua: Carlitas, 123", new EDA.Comentario(""), "4787654321"));
         this.vendedores = new ArrayList<>();
         
         
@@ -49,13 +49,13 @@ public class DAOMemoria implements DAOFacade {
         Veiculo b3 = new Veiculo(1930, "Carroça", "FWZ1013", "Mentz", "Vermelho", c);
         Veiculo b4 = new Veiculo(1990, "Quase carro", "FWA1013", "Leo", "Roxo", c);
         Veiculo b5 = new Veiculo(2017, "MotoCarExpress", "FWB1013", "Weiss", "Dourado", c);
-        UsuDados p1 = new UsuDados("Testano", "00000000000", "00000000000", "teste@sex.com", "rua teste, 666", new EDA.Comentario(""), "4792230226");
-        UsuDados p2 = new UsuDados("Testador", "00000000000", "00000000000", "usu1@sedex.com", "Rua: Carlitos, 333", new EDA.Comentario(), "4712345678");
-        UsuDados p3 = new UsuDados("Testadora", "00000000000", "00000000000", "usu2@sedex.com", "Rua: Carlitas, 123", new EDA.Comentario(), "4787654321");
-        vendaVeiculos.add(new VendaVeiculo(b1, p2, 30000, c));
+        UsuDados p1 = new UsuDados("Testano", "123456789", "6549813616", "teste@sex.com", "rua teste, 666", new EDA.Comentario(""), "4792230226");
+        UsuDados p2 = new UsuDados("Testador", "987654321", "8465923161", "usu1@sedex.com", "Rua: Carlitos, 333", new EDA.Comentario(), "4712345678");
+        UsuDados p3 = new UsuDados("Testadora", "1122334455", "316292495", "usu2@sedex.com", "Rua: Carlitas, 123", new EDA.Comentario(), "4787654321");
+        vendaVeiculos.add(new VendaVeiculo(b1, p2, 30000.00, c));
         vendaVeiculos.add(new VendaVeiculo(b2, p3, 20250.50, c));
         vendaVeiculos.add(new VendaVeiculo(b3, p3, 2785.18, c));
-        vendaVeiculos.add(new VendaVeiculo(b4, p1, 29999, c));
+        vendaVeiculos.add(new VendaVeiculo(b4, p1, 29999.00, c));
         vendaVeiculos.add(new VendaVeiculo(b5, p2, 675250.02, c));
     }
     
@@ -64,6 +64,7 @@ public class DAOMemoria implements DAOFacade {
         return adm == admin;
     }
     
+    //Autor: Felipe Weiss
     @Override
     public void setUsuarioLogado(String username, String password){
         for(Usuario a : usuarios){
@@ -109,11 +110,9 @@ public class DAOMemoria implements DAOFacade {
     // Autor: Mentz
     //@Override
     @Override
-    public Adm login(String login, String senha)
+    public Adm getAdm()
     {
-        if (login.equals(admin.getLogin()) && senha.equals(admin.getSenha()))
-            return admin;
-        return null;
+        return admin;
     }
     
     // Autor: Mentz
@@ -168,56 +167,8 @@ public class DAOMemoria implements DAOFacade {
     }
     
     @Override
-     public boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email){
-        if(nome.length() <=6){
-            status.addErro("Nome de usuário muito pequeno!");
-        }
-        if(rg.length() != 7){
-            status.addErro("Numero de RG incorreto!");
-        }
-        if(cpf.length() != 11){
-            status.addErro("Numero de CPF incorreto!");
-        }
-        if(telefone.length() < 10 || telefone.length() > 11){
-            status.addErro("Numero de telefone incorreto!");
-        }
-        boolean emailArroba = false;
-        for(int i = 0; i < email.length(); i++){
-            if(email.charAt(i) == '@'){
-                if(emailArroba){
-                    status.addErro("Email incorreto!");
-                    break;
-                } else {
-                    emailArroba = true;
-                }
-            }
-        }
-        if(!emailArroba){
-            status.addErro("Email incorreto!");
-        }
-        return !status.fail();
-    }
-     
-    @Override
-    public boolean checaLogin(String login, String senha){
-        if(login.length() == 0){
-            status.addErro("Login não pode ter tamanho 0!");
-        }
-        if(senha.length() == 0){
-            status.addErro("Senha não pode ter tamanho 0!");            
-        }
-        if(status.fail()){
-            return false;
-        }
-        
-        for(Usuario usr : usuarios){
-            if(login.equals(usr.getLogin()) && senha.equals(usr.getSenha())){
-                return true;
-            }
-        }
-        
-        status.addErro("Usuario ou senha incorreto!");
-        return false;
+    public void cadastrarUsuario(String login, String senha, String nome, String rg, String cpf, String cartMotorista, String endereco, String telefone, String email){
+        usuarios.add(new Usuario(login, senha, cpf, rg, cartMotorista, email, endereco, new Comentario(""), telefone));
     }
     
     @Override
@@ -228,28 +179,14 @@ public class DAOMemoria implements DAOFacade {
     @Override
     public void registrarVeiculo(Veiculo veiculo) {
         veiculos.add(veiculo);
-    }
-    
-    
+    }  
     
     // Author: Arthur
     
     @Override
     public void registrarVenda(VendaVeiculo venda){
         vendaVeiculos.add(venda);
-    }
-    
-    @Override
-    public boolean checaVendedor(Vendedor vendedor){
-        for(Vendedor vnd : vendedores){
-            if(vendedor.equals(vnd)){
-                return true;
-            }
-        }
-        
-        status.addErro("Vendedor não encontrado");
-        return false;
-    }
+    }    
     
     @Override
     public ArrayList<Vendedor> listaVendedores() {

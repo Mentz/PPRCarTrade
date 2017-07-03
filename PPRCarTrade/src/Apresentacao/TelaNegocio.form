@@ -47,8 +47,8 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btn_CadastrarVendedor" pref="179" max="32767" attributes="0"/>
-                  <Component id="btn_VenderVeiculo" max="32767" attributes="0"/>
+                  <Component id="btn_VenderVeiculo" pref="179" max="32767" attributes="0"/>
+                  <Component id="btn_EditarVendas" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
           </Group>
@@ -67,7 +67,7 @@
               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bnt_BuscarProprietario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btn_CadastrarVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_EditarVendas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btn_Cancelar" min="-2" max="-2" attributes="0"/>
@@ -117,13 +117,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bnt_BuscarProprietarioActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_CadastrarVendedor">
+    <Component class="javax.swing.JButton" name="btn_EditarVendas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastrar Vendedor"/>
-        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="Editar vendas"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CadastrarVendedorActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_EditarVendasActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

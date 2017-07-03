@@ -20,6 +20,7 @@ import java.util.Collections;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,7 +36,7 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     public TelaBuscarProprietario() {
         initComponents();        
         
-        jlt_Proprietarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jtb_Proprietarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         ButtonGroup group = new ButtonGroup();
         group.add(nome);
@@ -74,9 +75,9 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
         cpf = new javax.swing.JRadioButton();
         email = new javax.swing.JRadioButton();
         fone = new javax.swing.JRadioButton();
-        bnt_Cancelar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlt_Proprietarios = new javax.swing.JList<>();
+        btn_Voltar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtb_Proprietarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -119,14 +120,30 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
             }
         });
 
-        bnt_Cancelar.setText("Cancelar");
-        bnt_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+        btn_Voltar.setText("Voltar");
+        btn_Voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bnt_CancelarActionPerformed(evt);
+                btn_VoltarActionPerformed(evt);
             }
         });
 
-        jScrollPane1.setViewportView(jlt_Proprietarios);
+        jtb_Proprietarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "CPF", "Email", "Telefone"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jtb_Proprietarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,19 +157,18 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nome)
-                                    .addComponent(cpf)
-                                    .addComponent(email)
-                                    .addComponent(fone)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(bnt_Cancelar)))))
-                .addContainerGap())
+                            .addComponent(nome)
+                            .addComponent(cpf)
+                            .addComponent(email)
+                            .addComponent(fone)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_Voltar)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,10 +186,10 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(email)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fone)
-                        .addGap(29, 29, 29)
-                        .addComponent(bnt_Cancelar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fone))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Voltar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -181,10 +197,10 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
    
-    private void bnt_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_CancelarActionPerformed
+    private void btn_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VoltarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_bnt_CancelarActionPerformed
+    }//GEN-LAST:event_btn_VoltarActionPerformed
 
     private void Fechando(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Fechando
         // TODO add your handling code here:
@@ -200,75 +216,62 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     }
     
     private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
-        // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
-        
-        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
-        
+        // TODO add your handling code here:        
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();        
         Collections.sort(aux, new NomeComparator());
         
-        String cabecalho = formatCabecalho();
-        list.addElement(cabecalho);
+        DefaultTableModel model = (DefaultTableModel)jtb_Proprietarios.getModel();
+        model.setRowCount(0);
         
         for(Usuario a : aux){
-            String res = formatSaida(a);
-            list.addElement(res);
-        }
-        jlt_Proprietarios.setModel(list);
+            model.addRow(new Object[]{ a.getNome(), a.getCpf(), a.getEmail(), a.getFone() });
+        }   
+        jtb_Proprietarios.setModel(model);
     }//GEN-LAST:event_nomeActionPerformed
 
     private void cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfActionPerformed
         // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
         
-        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
-        
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();        
         Collections.sort(aux, new CPFComparator());
         
-        String cabecalho = formatCabecalho();
-        list.addElement(cabecalho);
+        DefaultTableModel model = (DefaultTableModel)jtb_Proprietarios.getModel();
+        model.setRowCount(0);
         
         for(Usuario a : aux){
-            String res = formatSaida(a);
-            list.addElement(res);
-        }
-        jlt_Proprietarios.setModel(list);
+            model.addRow(new Object[]{ a.getNome(), a.getCpf(), a.getEmail(), a.getFone() });
+        }   
+        jtb_Proprietarios.setModel(model);
     }//GEN-LAST:event_cpfActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
         
-        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
-        
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();        
         Collections.sort(aux, new EmailComparator());
         
-        String cabecalho = formatCabecalho();
-        list.addElement(cabecalho);
+        DefaultTableModel model = (DefaultTableModel)jtb_Proprietarios.getModel();
+        model.setRowCount(0);
         
         for(Usuario a : aux){
-            String res = formatSaida(a);
-            list.addElement(res);
-        }
-        jlt_Proprietarios.setModel(list);
+            model.addRow(new Object[]{ a.getNome(), a.getCpf(), a.getEmail(), a.getFone() });
+        }   
+        jtb_Proprietarios.setModel(model);
     }//GEN-LAST:event_emailActionPerformed
 
     private void foneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foneActionPerformed
         // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
         
-        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();
-        
+        ArrayList<Usuario> aux = NegocioFacade.listaUsuarios();        
         Collections.sort(aux, new FoneComparator());
         
-        String cabecalho = formatCabecalho();
-        list.addElement(cabecalho);
+        DefaultTableModel model = (DefaultTableModel)jtb_Proprietarios.getModel();
+        model.setRowCount(0);
         
         for(Usuario a : aux){
-            String res = formatSaida(a);
-            list.addElement(res);
-        }
-        jlt_Proprietarios.setModel(list);
+            model.addRow(new Object[]{ a.getNome(), a.getCpf(), a.getEmail(), a.getFone() });
+        }   
+        jtb_Proprietarios.setModel(model);
     }//GEN-LAST:event_foneActionPerformed
 
      /**
@@ -308,7 +311,7 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bnt_Cancelar;
+    private javax.swing.JButton btn_Voltar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -323,8 +326,8 @@ public class TelaBuscarProprietario extends javax.swing.JFrame {
     private javax.swing.JRadioButton fone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> jlt_Proprietarios;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jtb_Proprietarios;
     private javax.swing.JRadioButton nome;
     // End of variables declaration//GEN-END:variables
 }

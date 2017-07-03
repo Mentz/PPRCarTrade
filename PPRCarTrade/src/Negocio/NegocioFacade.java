@@ -9,6 +9,7 @@ import DAO.DAOFacade;
 import DAO.DAOMemoria;
 import EDA.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,12 +46,7 @@ public class NegocioFacade {
     {
         registro.registrarVendedor(vendedor);
     }
-    
-    // Autor: Mentz
-    public static Adm login(String login, String senha)
-    {
-        return registro.login(login, senha);
-    }
+      
     
     // Autor: Mentz
     public static ArrayList<VendaVeiculo> listaVeiculos()
@@ -63,39 +59,113 @@ public class NegocioFacade {
         return registro.listaUsuarios();
     }
     
-   
+    public static boolean checaVendedor(Vendedor vendedor){
+        for(Vendedor vnd : registro.listaVendedores()){
+            if(vendedor.equals(vnd)){
+                return true;
+            }
+        }
+        
+        registro.getStatus().addErro("Vendedor não encontrado");
+        return false;
+    }
     
     // Autor: Mentz
-    public static boolean checaCadastro(String nome, String rg, String cpf, String telefone, String email)
-    {
-        return registro.checaCadastro(nome, rg, cpf, telefone, email);
+    public static boolean checaCadastro(String login, String senha, String nome, String rg, String cpf, String endereco, String cartMotorista, String telefone, String email)
+    {   
+        if(login.length() <= 6){
+            registro.getStatus().addErro("Nome de usuário muito pequeno!");
+        }        
+        
+        try {
+            double aux = Double.parseDouble(rg);
+        } catch(Exception e){
+            registro.getStatus().addErro("Número de RG incorreto!");
+        }
+        
+        try {
+            double aux = Double.parseDouble(cpf);
+        } catch(Exception e){
+            registro.getStatus().addErro("Número de CPF incorreto!");
+        }
+        
+        for(Usuario a : registro.listaUsuarios()){
+            if(cpf.equals(a.getCpf())){
+                registro.getStatus().addErro("Número de CPF já cadastrado!");
+            }
+            if(a.getLogin().equals(login)){
+                registro.getStatus().addErro("Username já cadastrado!");
+            }
+        }
+        
+        if(telefone.length() < 10 || telefone.length() > 11){
+            registro.getStatus().addErro("Numero de telefone incorreto!");
+        }
+        boolean emailArroba = false;
+        for(int i = 0; i < email.length(); i++){
+            if(email.charAt(i) == '@'){
+                if(emailArroba){
+                    registro.getStatus().addErro("Email incorreto!");
+                    break;
+                } else {
+                    emailArroba = true;
+                }
+            }
+        }
+        if(!emailArroba){
+            registro.getStatus().addErro("Email incorreto!");
+        }
+        
+        if(!registro.getStatus().fail()){
+            registro.cadastrarUsuario(login, senha, nome, rg, cpf, cartMotorista, endereco, telefone, email);
+            return true;
+        }
+        return false;        
+    }
+    
+    public static boolean checaLogin(String login, String senha){
+        if(login.length() == 0){
+            registro.getStatus().addErro("Login não pode ter tamanho 0!");
+        }
+        if(senha.length() == 0){
+            registro.getStatus().addErro("Senha não pode ter tamanho 0!");            
+        }
+        if(registro.getStatus().fail()){
+            return false;
+        }
+        
+        for(Usuario usr : registro.listaUsuarios()){
+            if(login.equals(usr.getLogin()) && senha.equals(usr.getSenha())){
+                return true;
+            }
+        }
+        
+        registro.getStatus().addErro("Usuario ou senha incorreto!");
+        return false;
     }
     
     // Autor: Mentz
     public static Status getStatus()
     {
         return registro.getStatus();
-    }
-    
-    public static boolean checaLoginUsuario(String login, String senha){
-        return registro.checaLogin(login, senha);
-
-    }
+    }     
     
     // Autor: Mentz
-    public static boolean checaLogin(String login, String senha)
+    public static boolean checaLoginAdm(String login, String senha)
     {
-        Adm tmp = registro.login(login, senha);
-        if (tmp == null)
-            return false;
-        else
+        Adm tmp = registro.getAdm();
+        if(login.equals(tmp.getLogin()) && senha.equals(tmp.getSenha())){
             return true;
+        }
+        return false;
     }
     
-    public static void adicionarVeiculoVendedor(Vendedor vendedor, Veiculo veiculo){
-        if(registro.checaVendedor(vendedor)){
+    public static boolean adicionarVeiculoVendedor(Vendedor vendedor, Veiculo veiculo){
+        if(NegocioFacade.checaVendedor(vendedor)){
             registro.adicionarVeiculoVendedor(vendedor, veiculo);
+            return true;
         }
+        return false;
     }
     
     public static void setUsuarioLogado(String username, String password){

@@ -134,7 +134,7 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String login = jtf_Login.getText();
         String senha = new String(jpf_Password.getPassword());  
-        if (!NegocioFacade.checaLogin(login, senha))
+        if (!NegocioFacade.checaLoginAdm(login, senha))
         {
             JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro", JOptionPane.ERROR_MESSAGE);
         } else
@@ -153,7 +153,7 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String login = jtf_Login.getText();
         String senha = new String(jpf_Password.getPassword());
-        if(NegocioFacade.checaLoginUsuario(login, senha)){
+        if(NegocioFacade.checaLogin(login, senha)){
             NegocioFacade.setUsuarioLogado(login, senha);
             new TelaNegocio(this).setVisible(true);
         } else {

@@ -41,7 +41,7 @@ public class TelaNegocio extends javax.swing.JFrame {
         btn_BuscarVeiculo = new javax.swing.JButton();
         btn_Cancelar = new javax.swing.JButton();
         bnt_BuscarProprietario = new javax.swing.JButton();
-        btn_CadastrarVendedor = new javax.swing.JButton();
+        btn_EditarVendas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -81,11 +81,10 @@ public class TelaNegocio extends javax.swing.JFrame {
             }
         });
 
-        btn_CadastrarVendedor.setText("Cadastrar Vendedor");
-        btn_CadastrarVendedor.setEnabled(false);
-        btn_CadastrarVendedor.addActionListener(new java.awt.event.ActionListener() {
+        btn_EditarVendas.setText("Editar vendas");
+        btn_EditarVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CadastrarVendedorActionPerformed(evt);
+                btn_EditarVendasActionPerformed(evt);
             }
         });
 
@@ -109,8 +108,8 @@ public class TelaNegocio extends javax.swing.JFrame {
                     .addComponent(bnt_BuscarProprietario, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_CadastrarVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                    .addComponent(btn_VenderVeiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_VenderVeiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(btn_EditarVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
@@ -125,7 +124,7 @@ public class TelaNegocio extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bnt_BuscarProprietario)
-                    .addComponent(btn_CadastrarVendedor))
+                    .addComponent(btn_EditarVendas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Cancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -168,17 +167,18 @@ public class TelaNegocio extends javax.swing.JFrame {
         new TelaBuscarProprietario(this).setVisible(true);
     }//GEN-LAST:event_bnt_BuscarProprietarioActionPerformed
 
-    private void btn_CadastrarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarVendedorActionPerformed
+    private void btn_EditarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarVendasActionPerformed
+        // TODO add your handling code here:
         this.setEnabled(false);
-        new TelaCadastroVendedor(this).setVisible(true);
-    }//GEN-LAST:event_btn_CadastrarVendedorActionPerformed
+        new TelaEditarVendas(this).setVisible(true);
+    }//GEN-LAST:event_btn_EditarVendasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bnt_BuscarProprietario;
     private javax.swing.JButton btn_BuscarVeiculo;
-    private javax.swing.JButton btn_CadastrarVendedor;
     private javax.swing.JButton btn_Cancelar;
+    private javax.swing.JButton btn_EditarVendas;
     private javax.swing.JButton btn_VenderVeiculo;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

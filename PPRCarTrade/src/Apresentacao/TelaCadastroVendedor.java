@@ -221,12 +221,12 @@ public class TelaCadastroVendedor extends javax.swing.JFrame {
         String endereco = jtf_endereco.getText();
         Comentario c = new Comentario(jta_Comentario.getText());
         String carteira = jtf_carteira.getText();
-        if(NegocioFacade.checaCadastro(nome, "0000000", cpf, telefone, email)){
+        /*if(NegocioFacade.checaCadastro(nome, "0000000", cpf, telefone, email)){
             Vendedor v = new Vendedor(nome, cpf, carteira, email, endereco, c, telefone);
             NegocioFacade.registrarVendedor(v);
         } else {
             JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Erro!", JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_btn_CadastrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

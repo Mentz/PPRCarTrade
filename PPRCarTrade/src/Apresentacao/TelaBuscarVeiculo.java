@@ -17,7 +17,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,8 +36,8 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
     
     public TelaBuscarVeiculo() {
         initComponents();
-                
-        jlt_Veiculos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        jtb_Veiculos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         ButtonGroup group = new ButtonGroup();
         group.add(jrb_Marca);
@@ -41,6 +45,11 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         group.add(jrb_Ano);
         group.add(jrb_MenorPreco);
         group.add(jrb_MaiorPreco);
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        jtb_Veiculos.setDefaultRenderer(Object.class, centerRenderer);
+        
     }
     
     public TelaBuscarVeiculo(TelaNegocio tela){
@@ -64,10 +73,10 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jrb_MaiorPreco = new javax.swing.JRadioButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlt_Veiculos = new javax.swing.JList<>();
         btn_Confirmar = new javax.swing.JButton();
         btn_Cancelar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtb_Veiculos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -117,8 +126,6 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jlt_Veiculos);
-
         btn_Confirmar.setText("Confirmar");
         btn_Confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,38 +140,56 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
             }
         });
 
+        jtb_Veiculos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Marca", "Modelo", "Cor", "Ano", "Preço"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jtb_Veiculos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2))
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrb_Modelo)
-                            .addComponent(jrb_Marca)
-                            .addComponent(jrb_MenorPreco)
-                            .addComponent(jrb_MaiorPreco)
-                            .addComponent(jrb_Ano))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(176, 176, 176))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jrb_Modelo)
+                                    .addComponent(jrb_Marca)
+                                    .addComponent(jrb_MenorPreco)
+                                    .addComponent(jrb_MaiorPreco)
+                                    .addComponent(jrb_Ano))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +197,7 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -185,12 +210,12 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
                         .addComponent(jrb_MenorPreco)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jrb_MaiorPreco))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Cancelar)
-                    .addComponent(btn_Confirmar))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Confirmar)
+                    .addComponent(btn_Cancelar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,32 +225,20 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         tela.setEnabled(true);
     }//GEN-LAST:event_Fechando
-    
-    private String formatCabecalho(){
-        return String.format("%-18s %-18s %-15s %-18s %s", "Marca", "Modelo", "Cor", "Ano", "Preco");
-    }
-    
-    private String formatSaida(VendaVeiculo a){
-        return String.format("%-15s %-15s %-15s %-15s %.2f", a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco());
-    }
-    
+        
     private void jrb_ModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_ModeloActionPerformed
-        // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
-        
-        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
-        
+        // TODO add your handling code here:        
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();        
         Collections.sort(aux, new ModeloVeiculoComparator());
         
-        String cabecalho = formatCabecalho();
-        list.addElement(cabecalho);
-        
+        DefaultTableModel model = (DefaultTableModel)jtb_Veiculos.getModel();
+        model.setRowCount(0);
         for(VendaVeiculo a : aux){
-            String res = formatSaida(a);
-            list.addElement(res);
+            model.addRow(new Object[]{ a.getVeiculo().getMarca(), a.getVeiculo().getModelo(),
+                                   a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco()});
         }
         
-        jlt_Veiculos.setModel(list);
+        jtb_Veiculos.setModel(model);
         
     }//GEN-LAST:event_jrb_ModeloActionPerformed
 
@@ -235,87 +248,75 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CancelarActionPerformed
 
     private void jrb_AnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_AnoActionPerformed
-        // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
-        
-        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
-        
+        // TODO add your handling code here:        
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();        
         Collections.sort(aux, new AnoVeiculoComparator());
         
-        String cabecalho = formatCabecalho();
-        list.addElement(cabecalho);
-        
+        DefaultTableModel model = (DefaultTableModel)jtb_Veiculos.getModel();
+        model.setRowCount(0);
         for(VendaVeiculo a : aux){
-            String res = formatSaida(a);
-            list.addElement(res);
+            model.addRow(new Object[]{ a.getVeiculo().getMarca(), a.getVeiculo().getModelo(),
+                                   a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco()});
         }
         
-        jlt_Veiculos.setModel(list);
+        jtb_Veiculos.setModel(model);
     }//GEN-LAST:event_jrb_AnoActionPerformed
 
     private void jrb_MarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_MarcaActionPerformed
         // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
-        
-        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
-        
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();        
         Collections.sort(aux, new MarcaVeiculoComparator());
         
-        String cabecalho = formatCabecalho();
-        list.addElement(cabecalho);
-        
+        DefaultTableModel model = (DefaultTableModel)jtb_Veiculos.getModel();
+        model.setRowCount(0);
         for(VendaVeiculo a : aux){
-            String res = formatSaida(a);
-            list.addElement(res);
+            model.addRow(new Object[]{ a.getVeiculo().getMarca(), a.getVeiculo().getModelo(),
+                                   a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco()});
         }
         
-        jlt_Veiculos.setModel(list);
+        jtb_Veiculos.setModel(model);
     }//GEN-LAST:event_jrb_MarcaActionPerformed
 
     private void jrb_MenorPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_MenorPrecoActionPerformed
         // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
-        
-        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
-        
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();        
         Collections.sort(aux, new MenorPrecoVeiculoComparator());
         
-        String cabecalho = formatCabecalho();
-        list.addElement(cabecalho);
-        
+        DefaultTableModel model = (DefaultTableModel)jtb_Veiculos.getModel();
+        model.setRowCount(0);
         for(VendaVeiculo a : aux){
-            String res = formatSaida(a);
-            list.addElement(res);
+            model.addRow(new Object[]{ a.getVeiculo().getMarca(), a.getVeiculo().getModelo(),
+                                   a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco()});
         }
         
-        jlt_Veiculos.setModel(list);
+        jtb_Veiculos.setModel(model);
     }//GEN-LAST:event_jrb_MenorPrecoActionPerformed
 
     private void jrb_MaiorPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_MaiorPrecoActionPerformed
         // TODO add your handling code here:
-        DefaultListModel list = new DefaultListModel();
-        
-        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();
-        
+        ArrayList<VendaVeiculo> aux = NegocioFacade.listaVeiculos();        
         Collections.sort(aux, new MaiorPrecoVeiculoComparator());
         
-        String cabecalho = formatCabecalho();
-        list.addElement(cabecalho);
-        
+       DefaultTableModel model = (DefaultTableModel)jtb_Veiculos.getModel();
+       model.setRowCount(0);
         for(VendaVeiculo a : aux){
-            String res = formatSaida(a);
-            list.addElement(res);
+            model.addRow(new Object[]{ a.getVeiculo().getMarca(), a.getVeiculo().getModelo(),
+                                   a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco()});
         }
         
-        jlt_Veiculos.setModel(list);
+        jtb_Veiculos.setModel(model);
     }//GEN-LAST:event_jrb_MaiorPrecoActionPerformed
 
     private void btn_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfirmarActionPerformed
         // TODO add your handling code here:
-        if(!jlt_Veiculos.isSelectionEmpty()){
-            int index = jlt_Veiculos.getSelectedIndex() - 1;
+        
+        int index = jtb_Veiculos.getSelectedRow();
+        if(index != -1){
             new TelaEspecificacaoVeiculo(this, NegocioFacade.listaVeiculos().get(index)).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "É necessário selecionar um carro!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_btn_ConfirmarActionPerformed
     
     /**
@@ -362,12 +363,12 @@ public class TelaBuscarVeiculo extends javax.swing.JFrame {
     private javax.swing.JButton btn_Confirmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> jlt_Veiculos;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton jrb_Ano;
     private javax.swing.JRadioButton jrb_MaiorPreco;
     private javax.swing.JRadioButton jrb_Marca;
     private javax.swing.JRadioButton jrb_MenorPreco;
     private javax.swing.JRadioButton jrb_Modelo;
+    private javax.swing.JTable jtb_Veiculos;
     // End of variables declaration//GEN-END:variables
 }
