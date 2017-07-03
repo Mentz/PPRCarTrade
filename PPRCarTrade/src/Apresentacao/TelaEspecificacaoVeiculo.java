@@ -278,7 +278,7 @@ public class TelaEspecificacaoVeiculo extends javax.swing.JFrame {
             this.setSize(this.getWidth(), this.getHeight() + jta_Comentario.getHeight() + 10);
             //jta_Comentario.setVisible(true);
         } else {
-            if(NegocioFacade.adicionarComentarioVeiculo(veiculo, jta_Comentario.getText())){
+            if(NegocioFacade.adicionarComentarioVeiculo(veiculo, NegocioFacade.getUsuarioLogado().getNome() + ": " + jta_Comentario.getText())){
                 JOptionPane.showMessageDialog(this, "Comentário adicionado com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(this, NegocioFacade.getStatus().getErro(), "Error", JOptionPane.ERROR_MESSAGE);

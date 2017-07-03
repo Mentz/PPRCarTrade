@@ -43,8 +43,8 @@ public class VendaVeiculo {
     public Comentario getComentarios(){
         return comentario;
     }
-    public void setComentarios(Comentario comentario){
-        this.comentario = new Comentario(this.comentario.getComment() + "\n" + comentario.getComment());
+    public void setComentarios(Comentario comentario){        
+        this.comentario.setComment(comentario.getComment());
     }
     
     /*-----------------------------------*/

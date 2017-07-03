@@ -10,6 +10,7 @@ import EDA.VendaVeiculo;
 import Negocio.NegocioFacade;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -25,13 +26,16 @@ public class TelaEditarVendas extends javax.swing.JFrame {
      */
     
     private TelaNegocio tela;
+    private ArrayList<VendaVeiculo> meusVeiculos;
     
     public TelaEditarVendas() {
         initComponents();
         
+        meusVeiculos = new ArrayList<>();
+        
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        jtb_Veiculos.setDefaultRenderer(Object.class, centerRenderer);
+        jtb_Veiculos.setDefaultRenderer(Object.class, centerRenderer);        
         
         jtb_Veiculos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         DefaultTableModel model = (DefaultTableModel)jtb_Veiculos.getModel();
@@ -41,6 +45,7 @@ public class TelaEditarVendas extends javax.swing.JFrame {
             if(a.getProprietario().getCpf().equals(logado.getCpf())){
                 model.addRow(new Object[]{ a.getVeiculo().getMarca(), a.getVeiculo().getModelo(), 
                                            a.getVeiculo().getCor(), a.getVeiculo().getAno(), a.getPreco()});
+                meusVeiculos.add(a);
             }
         }
         jtb_Veiculos.setModel(model);
@@ -62,10 +67,10 @@ public class TelaEditarVendas extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_Editar = new javax.swing.JButton();
+        btn_Visualizar = new javax.swing.JButton();
+        btn_Cancelar = new javax.swing.JButton();
+        btn_Voltar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtb_Veiculos = new javax.swing.JTable();
 
@@ -79,21 +84,26 @@ public class TelaEditarVendas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         jLabel1.setText("Editar vendas");
 
-        jButton1.setText("Editar venda");
+        btn_Editar.setText("Editar venda");
 
-        jButton2.setText("Visualizar detalhes");
-
-        jButton3.setText("Cancelar venda");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_Visualizar.setText("Visualizar detalhes");
+        btn_Visualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_VisualizarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Voltar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_Cancelar.setText("Cancelar venda");
+        btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_CancelarActionPerformed(evt);
+            }
+        });
+
+        btn_Voltar.setText("Voltar");
+        btn_Voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VoltarActionPerformed(evt);
             }
         });
 
@@ -126,15 +136,15 @@ public class TelaEditarVendas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_Visualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(btn_Cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
@@ -147,34 +157,45 @@ public class TelaEditarVendas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(btn_Voltar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton2)
-                        .addGap(41, 41, 41)
-                        .addComponent(jButton3)
-                        .addGap(68, 68, 68))))
+                        .addComponent(btn_Editar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Visualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Cancelar)
+                        .addGap(87, 87, 87))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VoltarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btn_VoltarActionPerformed
 
     private void Fechando(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Fechando
         // TODO add your handling code here:
         tela.setEnabled(true);
     }//GEN-LAST:event_Fechando
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_CancelarActionPerformed
+
+    private void btn_VisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VisualizarActionPerformed
+        // TODO add your handling code here:
+        int index = jtb_Veiculos.getSelectedRow();
+        if(index > -1){
+            this.setEnabled(false);
+            new TelaVisualizarVenda(this, meusVeiculos.get(index)).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Você precisa selecionar um carro!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_VisualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,10 +234,10 @@ public class TelaEditarVendas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btn_Cancelar;
+    private javax.swing.JButton btn_Editar;
+    private javax.swing.JButton btn_Visualizar;
+    private javax.swing.JButton btn_Voltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtb_Veiculos;

@@ -196,9 +196,9 @@ public class NegocioFacade {
         if(comentario.length() > 0){
             registro.adicionarComentarioUsuario(proprietario, comentario);
         } else {
-            NegocioFacade.getStatus().addErro("Comentario não pode ser vazio!");
+            getStatus().addErro("Comentario não pode ser vazio!");
         }
-        return !NegocioFacade.getStatus().fail();
+        return !getStatus().fail();
     }
     
     public static boolean adicionarComentarioVeiculo(VendaVeiculo veiculo, String comentario){
