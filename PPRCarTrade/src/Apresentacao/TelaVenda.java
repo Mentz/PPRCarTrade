@@ -8,7 +8,13 @@ package Apresentacao;
 import DAO.DAOFacade;
 import EDA.*;
 import Negocio.NegocioFacade;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author Felipe e Arthur
@@ -20,6 +26,7 @@ public class TelaVenda extends javax.swing.JFrame {
      */
         
     TelaNegocio tela;
+    private ArrayList<ImageIcon> imagens;
     
     public TelaVenda(){
         initComponents();
@@ -30,6 +37,7 @@ public class TelaVenda extends javax.swing.JFrame {
         initComponents();
         this.tela = tela;
         this.tela.setEnabled(false);
+        imagens = new ArrayList<>();
     }
     
 
@@ -63,6 +71,8 @@ public class TelaVenda extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jta_Informacoes = new javax.swing.JTextArea();
         jlb_Informacoes = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        btn_CarregarImagem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -110,12 +120,27 @@ public class TelaVenda extends javax.swing.JFrame {
         jta_Informacoes.setRows(5);
         jScrollPane2.setViewportView(jta_Informacoes);
 
-        jlb_Informacoes.setText("Informações");
+        jlb_Informacoes.setText("Informações:");
+
+        jLabel9.setText("Adicionar imagens: ");
+
+        btn_CarregarImagem.setText("Carregar Imagem");
+        btn_CarregarImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CarregarImagemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -150,18 +175,18 @@ public class TelaVenda extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jlb_Informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_CarregarImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -202,11 +227,15 @@ public class TelaVenda extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlb_Informacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(btn_CarregarImagem))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -242,7 +271,7 @@ public class TelaVenda extends javax.swing.JFrame {
         
         Veiculo vehicle = new Veiculo(year, model, licensePlate, brand, color, commentCar);
         VendaVeiculo carSale = new VendaVeiculo(vehicle, usuario, price, additionals);
-        
+        carSale.setImagens(imagens);
         if(!NegocioFacade.getStatus().fail() && NegocioFacade.registrarVenda(carSale)){
             JOptionPane.showMessageDialog(this, "Venda adicionada com sucesso!");
             this.dispose();
@@ -261,6 +290,23 @@ public class TelaVenda extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_CarregarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CarregarImagemActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+        fc.setFileFilter(imageFilter);
+        int result = fc.showOpenDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            try {
+                String path = fc.getSelectedFile().getAbsolutePath();
+                imagens.add(new ImageIcon(path));
+                JOptionPane.showMessageDialog(this, "Imagem carregada com sucesso!");
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao carregar a imagem!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }            
+        }
+    }//GEN-LAST:event_btn_CarregarImagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,6 +345,7 @@ public class TelaVenda extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ano;
+    private javax.swing.JButton btn_CarregarImagem;
     private javax.swing.JTextField cor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -310,6 +357,7 @@ public class TelaVenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jlb_Informacoes;

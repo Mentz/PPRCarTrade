@@ -22,10 +22,8 @@ import java.util.ArrayList;
 public class DAOMemoria implements DAOFacade {
     private Status status;
     private static DAOMemoria instance;
-    //private ArrayList<Veiculo> veiculos;
     private ArrayList<VendaVeiculo> vendaVeiculos;
     private ArrayList<Usuario> usuarios;
-    //private ArrayList<Vendedor> vendedores;
     private Usuario usuarioLogado;
     protected Adm admin;
     

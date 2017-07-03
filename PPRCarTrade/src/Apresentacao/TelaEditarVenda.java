@@ -10,6 +10,8 @@ import EDA.Usuario;
 import EDA.Veiculo;
 import EDA.VendaVeiculo;
 import Negocio.NegocioFacade;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +26,7 @@ public class TelaEditarVenda extends javax.swing.JFrame {
     
     private TelaUsuarioVendas tela;
     private VendaVeiculo veiculo;
+    private ArrayList<ImageIcon> imagens;
     
     public TelaEditarVenda() {
         initComponents();
@@ -33,6 +36,8 @@ public class TelaEditarVenda extends javax.swing.JFrame {
         this();
         this.tela = tela;
         this.veiculo = veiculo;
+        
+        imagens = veiculo.getImagens();
         
         jtf_Marca.setText(veiculo.getVeiculo().getMarca());
         jtf_Modelo.setText(veiculo.getVeiculo().getModelo());
@@ -67,6 +72,7 @@ public class TelaEditarVenda extends javax.swing.JFrame {
         btn_Cancelar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jtf_Placa = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -104,6 +110,13 @@ public class TelaEditarVenda extends javax.swing.JFrame {
 
         jLabel7.setText("Placa:");
 
+        jButton1.setText("Editar imagens");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,11 +127,6 @@ public class TelaEditarVenda extends javax.swing.JFrame {
                         .addGap(135, 135, 135)
                         .addComponent(jLabel1)
                         .addGap(0, 130, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -135,7 +143,14 @@ public class TelaEditarVenda extends javax.swing.JFrame {
                             .addComponent(jtf_Cor)
                             .addComponent(jtf_Ano)
                             .addComponent(jtf_Preco)
-                            .addComponent(jtf_Placa))))
+                            .addComponent(jtf_Placa)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_Confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,10 +182,11 @@ public class TelaEditarVenda extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtf_Preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Confirmar)
-                    .addComponent(btn_Cancelar))
+                    .addComponent(btn_Cancelar)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -212,9 +228,11 @@ public class TelaEditarVenda extends javax.swing.JFrame {
         c.setComment("");
         Usuario usuario = NegocioFacade.getUsuarioLogado();
         
+        System.out.println(imagens.size());
+        
         Veiculo vehicle = new Veiculo(ano, modelo, placa, marca, cor, new Comentario(""));
         VendaVeiculo veiculoModificado = new VendaVeiculo(vehicle, usuario, preco, new Comentario(""));
-        
+        veiculoModificado.setImagens(imagens);
         if(!NegocioFacade.getStatus().fail() && NegocioFacade.alterarRegistro(veiculo, veiculoModificado)){
             JOptionPane.showMessageDialog(this, "Veiculo alterado com sucesso!");
             this.dispose();
@@ -223,6 +241,12 @@ public class TelaEditarVenda extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_ConfirmarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setEnabled(false);
+        new TelaEditarImagensVeiculo(this, imagens).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,6 +286,7 @@ public class TelaEditarVenda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Cancelar;
     private javax.swing.JButton btn_Confirmar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

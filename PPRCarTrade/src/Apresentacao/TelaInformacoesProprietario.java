@@ -27,7 +27,7 @@ public class TelaInformacoesProprietario extends javax.swing.JFrame {
         initComponents();
         
         this.setSize(this.getWidth(), this.getHeight() - (jta_Comentario.getHeight() + 45));
-        
+        this.setResizable(false);
     }
     
     public TelaInformacoesProprietario(TelaEspecificacaoVeiculo tela, UsuDados proprietario){
