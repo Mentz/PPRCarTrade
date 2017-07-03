@@ -9,6 +9,9 @@ import EDA.Comentario;
 import EDA.UsuDados;
 import EDA.Usuario;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +25,7 @@ public class TelaVisualizarComentariosUsuario extends javax.swing.JFrame {
      */
     
     TelaInformacoesProprietario tela;
+    TelaBuscarProprietario telaBusca;
     
     public TelaVisualizarComentariosUsuario() {
         initComponents();
@@ -30,6 +34,39 @@ public class TelaVisualizarComentariosUsuario extends javax.swing.JFrame {
     public TelaVisualizarComentariosUsuario(TelaInformacoesProprietario tela, UsuDados proprietario){
         this();
         this.tela = tela;
+        
+        DefaultTableModel model = (DefaultTableModel)jtb_Comentarios.getModel();
+        model.setRowCount(0);
+        
+        ArrayList<Usuario> aux = Negocio.NegocioFacade.listaUsuarios();
+        
+        for(Usuario a : aux){
+            if(a.getCpf().equals(proprietario.getCpf())){
+                for(Comentario c : a.getComentUsu()){
+                    if(c.getComment() != ""){
+                        String usuario = "";
+                        int i = 0;
+                        for(i = 0; i < c.getComment().length() && c.getComment().charAt(i) != '&'; i++){
+                            usuario += c.getComment().charAt(i);
+                        }
+                        i++;
+                        String comentario = "";
+                        for(; i < c.getComment().length(); i++){
+                            comentario += c.getComment().charAt(i);
+                        }
+                        model.addRow(new Object[]{ usuario, comentario });
+                    }
+                }
+            }
+        }
+        
+        jtb_Comentarios.setModel(model);
+        
+    }
+    
+    public TelaVisualizarComentariosUsuario(TelaBuscarProprietario tela, UsuDados proprietario){
+        this();
+        this.telaBusca = tela;
         
         DefaultTableModel model = (DefaultTableModel)jtb_Comentarios.getModel();
         model.setRowCount(0);
@@ -107,6 +144,11 @@ public class TelaVisualizarComentariosUsuario extends javax.swing.JFrame {
         });
 
         jButton2.setText("Expandir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,8 +183,25 @@ public class TelaVisualizarComentariosUsuario extends javax.swing.JFrame {
 
     private void Fechando(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Fechando
         // TODO add your handling code here:
-        tela.setEnabled(true);
+        if(tela != null){
+            tela.setEnabled(true);
+        } else {
+            telaBusca.setEnabled(true);
+        }
     }//GEN-LAST:event_Fechando
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int index = jtb_Comentarios.getSelectedRow();
+        if(index > -1){
+            JTextArea msg = new JTextArea(10, 20);
+            msg.setText((String)jtb_Comentarios.getModel().getValueAt(index, 1));
+            msg.setLineWrap(true);
+            msg.setWrapStyleWord(true);
+            JScrollPane scrollPane = new JScrollPane(msg);
+            JOptionPane.showMessageDialog(this, scrollPane, (String)jtb_Comentarios.getModel().getValueAt(index, 0), JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
